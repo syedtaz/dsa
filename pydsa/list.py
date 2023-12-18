@@ -41,7 +41,6 @@ class Stack[a]():
     return v
 
 # 10.2.3 Implement a queue with singly linked lists.
-
 class Queue[a]():
   head: List[a] | None
   tail: List[a] | None
@@ -65,6 +64,26 @@ class Queue[a]():
     t = self.head.value
     self.head = self.head.next
     return t
+
+# 10.2.4 Disjoint set -- support union in O(1) time.
+
+class CircularList[a]():
+  lst: List[a] | None
+  hd: List[a] | None
+
+  def __init__(self, v: a) -> None:
+    self.lst = List(value = v, next = None)
+    self.hd = self.lst
+
+  def insert(self, v: a) -> None:
+    self.lst = List(value = v, next = self.lst)
+
+  def union(self, b: 'CircularList[a]') -> None:
+    hd_a = self.hd
+    assert hd_a is not None
+
+    hd_a.next = b.lst
+    self.hd = b.hd
 
 # 10.2.5 O(n) reverse with O(1) space for singly linked list.
 # Pretty much the same as tail recursive reverse later in Skiena.
@@ -100,7 +119,7 @@ def valid_parentheses(input: str) -> bool:
 # In other words, after the reversal all pointers should now point backwards.
 # Your algorithm should take linear time.
 
-def reverse(input: List[a]) -> List[a]:
+def reverse(input: List[a] | None) -> List[a]:
 
   def aux(input: List[a] | None, acc: List[a]) -> List[a]:
     return acc if input is None else aux(input.next, List(value = input.value, next = acc))
