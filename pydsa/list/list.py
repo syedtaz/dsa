@@ -64,6 +64,9 @@ def append_aux(left: L[a], right: L[a], acc: L[a]) -> L[a]:
 def append(left: L[a], right: L[a]) -> L[a]:
   return append_aux(left = left, right = right, acc = None)
 
+def reverse(lst: L[a]) -> L[a]:
+  return fold(lst, lambda v, acc: List[a](value = v, next = acc), None)
+
 # Finds the node containing a value if it exists.
 def search(lst : List[a] | None, k: a) -> List[a] | None:
   return None if lst is None else search(lst.next, k)

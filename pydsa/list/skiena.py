@@ -1,5 +1,6 @@
 from list import List, a
 from clrs import Stack
+from typing import Tuple, Any
 
 # Skiena
 
