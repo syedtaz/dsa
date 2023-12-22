@@ -1,8 +1,6 @@
-from typing import TypeVar, Optional
+from typing import Optional, Callable, TypeVar
 
 # Mutable binary search trees.
-
-a = TypeVar('a')
 
 class BST():
   value: int
@@ -18,6 +16,11 @@ class BST():
     return f"Node(value={self.value}, left={str(self.left)}, right={str(self.right)})"
 
 t = Optional[BST]
+a = TypeVar('a')
+b = TypeVar('b')
+
+def fold(node: t, f: Callable[[int, b, b], b], acc: b) -> b:
+  return acc if node is None else f(node.value, fold(node.left, f, acc), fold(node.right, f, acc))
 
 def search(node: t, v: int) -> t:
   if node is None:
@@ -83,7 +86,3 @@ def delete(root: BST, v: int) -> None:
       node.value = temp
 
   return None
-
-tree = BST(2, BST(1, None, None), BST(7, BST(4, BST(3, None, None), BST(6, BST(5, None, None), None)), BST(8, None, None)))
-delete(tree, 4)
-print(tree)
