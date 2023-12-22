@@ -1,4 +1,5 @@
 from list import List, a
+from typing import Optional
 
 # CLRS
 
