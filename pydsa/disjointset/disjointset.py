@@ -8,7 +8,7 @@ def make_set(x: int) -> None:
 
 def find(x: int) -> int:
   if x != parents[x]:
-    parents[x] = find(x)
+    parents[x] = find(parents[x])
   return parents[x]
 
 def union(x : int, y: int) -> None:
