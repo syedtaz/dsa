@@ -18,14 +18,14 @@ class Solution:
         m = 0
 
         for i in range(n):
-          for j in range(n):
-              if i == j:
-                  continue
+            for j in range(n):
+                if i == j:
+                    continue
 
-              e1 = len([x for x in graph[i] if x != j])
-              e2 = len(graph[j])
-              size = e1 + e2
-              m = max(m, size)
+                e1 = len([x for x in graph[i] if x != j])
+                e2 = len(graph[j])
+                size = e1 + e2
+                m = max(m, size)
 
         return m
 
