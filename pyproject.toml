@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "pydsa"
 version = "0.1.0"
-description = ""
-authors = ["Tazmilur Saad <ssaad@colgate.edu>"]
+description = "Personal repository for practicing data structures."
+authors = ["Tazmilur Saad"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
