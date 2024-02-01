@@ -1,26 +1,37 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        stack : list[str] = []
+        i, count = 0, 0
+        acc : list[str] = []
 
-        def valid(i: int) -> str:
-            res = ""
+        while True:
+            if i >= len(s):
+                s = "".join(acc)
+                acc = []
+                j = len(s) - 1
+                count = abs(count)
 
-            for idx, ch in enumerate(s[i:]):
-                if ch == "(":
-                    stack.append(ch)
-                    res += valid(idx + 1)
-                elif ch == ")":
-                    if len(stack) == 0:
-                        return ""
-                    _ = stack.pop()
-                    res = "(" + res + ch
-                    return res + valid(idx + 1)
+                while True:
+                    if count <= 0:
+                        return s[:j+1] + "".join(acc)[::-1]
+
+                    if s[j] == "(":
+                        j, count = j - 1, count - 1
+                        continue
+
+                    acc.append(s[j])
+                    j = j - 1
+
+            elif s[i] == ")":
+                if count < 0:
+                    acc.append(s[i])
+                    i, count = i + 1, count + 1
                 else:
-                    res += ch
+                    i, count = i + 1, 0
 
-            return res
+            elif s[i] == "(":
+                acc.append(s[i])
+                i, count = i + 1, count - 1
 
-        return valid(0)
-
-s = Solution()
-print(s.minRemoveToMakeValid("(abcd)"))
+            else:
+                acc.append(s[i])
+                i = i + 1
