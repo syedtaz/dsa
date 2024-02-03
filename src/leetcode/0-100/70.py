@@ -1,15 +1,11 @@
-from functools import cache
-
 class Solution:
     def climbStairs(self, n: int) -> int:
 
-        @cache
-        def f(x: int) -> int:
-            if x == 0:
-                return 1
+        table = [0] * n
+        table[0] = 1
+        for i in range(1, n):
+            one = table[i - 1] if i >= 1 else 0
+            two = table[i - 2] if i >= 2 else 0
+            table[i] = one + two
 
-            one = f(x - 1) if x >= 1 else 0
-            two = f(x - 2) if x >= 2 else 0
-            return one + two
-
-        return f(n)
+        return table[n-1]
