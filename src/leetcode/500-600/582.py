@@ -1,26 +1,27 @@
 from typing import List
-from collections import deque
+from collections import defaultdict, deque
 
 class Solution:
     def killProcess(self, pid: List[int], ppid: List[int], kill: int) -> List[int]:
-        acc : list[int] = [kill]
+
+        def construct(pid: list[int], ppid: list[int]) -> dict[int, list[int]]:
+            g: dict[int, list[int]] = defaultdict(list)
+
+            for idx, x in enumerate(ppid):
+                g[x].append(pid[idx])
+
+            return g
+
+        graph = construct(pid, ppid)
+        acc : list[int] = []
         queue : deque[int] = deque([kill])
-        seen : set[int] = set()
 
         while len(queue) > 0:
-            print(queue)
-            cur = queue.popleft()
-            if cur == 0:
-                return pid
+            node = queue.popleft()
 
-            for i, cand in enumerate(ppid):
-                if cand == cur and cand not in seen:
-                    acc.append(pid[i])
-                    queue.append(cand)
+            for child in graph[node]:
+                queue.append(child)
 
-            seen.add(cur)
+            acc.append(node)
 
         return acc
-
-s = Solution()
-print(s.killProcess(pid=[1,2,3], ppid=[0,1,2], kill=1))

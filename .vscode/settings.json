@@ -1,3 +1,7 @@
 {
   "editor.fontLigatures": true,
+  "editor.formatOnType": true,
+  "[lisp]": {
+    "editor.wordSeparators": "`|;:'\",()"
+  },
 }
