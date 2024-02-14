@@ -91,3 +91,7 @@ class Skiplist:
                 cur = cur.forward[i]
 
         return False
+
+s = Skiplist()
+s.add(1)
+print(s.search(1))
