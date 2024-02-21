@@ -1,5 +1,4 @@
 from typing import List
-from collections import defaultdict
 from math import inf
 
 
@@ -8,13 +7,15 @@ class Solution:
         self, n: int, flights: List[List[int]], src: int, dst: int, k: int
     ) -> int:
 
-        def construct(edges: list[list[int]]) -> dict[int, list[tuple[int, int]]]:
-            g: dict[int, list[tuple[int, int]]] = defaultdict(list)
+        distances = [inf] * n
+        distances[src] = 0
 
-            for edge in edges:
+        for _ in range(k + 1):
+            ndistances = [x for x in distances]
+            for edge in flights:
                 u, v, w = edge[0], edge[1], edge[2]
-                g[u].append((v, w))
+                if distances[u] != inf and ndistances[v] > distances[u] + w:
+                    ndistances[v] = distances[u] + w
+            distances = ndistances
 
-            return g
-
-        return 0  # TODO!
+        return int(distances[dst]) if distances[dst] != inf else -1
