@@ -1,11 +1,12 @@
 from typing import List
 
+class AugmentedString(str):
+    def __lt__(self, other: str) -> bool:
+        return self + other > other + self
+
+
+
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
-        choices : list[str] = []
-
-        for num in nums:
-            choices.append(str(num))
-
-        choices.sort(reverse=True)
-        return "".join(choices)
+        x = "".join(sorted([str(x) for x in nums], key=AugmentedString))
+        return '0' if x[0] == '0' else x

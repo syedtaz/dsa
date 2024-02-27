@@ -1,27 +1,17 @@
 from typing import List
-from random import choice
+from bisect import bisect_left, bisect_right
 
 class Solution:
     def findSpecialInteger(self, arr: List[int]) -> int:
 
-        def quickselect(i: int, j: int, k: int) -> int:
-            if i == j:
-                return arr[i]
+        n = len(arr)
+        cands = [arr[n // 4], arr[n // 2], arr[(3 * n) // 4]]
+        target = n // 4
 
-            pivot = choice(arr[i:j])
-            l, h, eq = 0, 0, 0
+        for cand in cands:
+            left = bisect_left(arr, cand)
+            right = bisect_right(arr, cand) - 1
+            if right - left + 1 > target:
+                return cand
 
-            for el in arr[i:j]:
-                if el < pivot:
-                    l += 1
-                elif el > pivot:
-                    h += 1
-                else:
-                    eq += 1
-
-            if k < l:
-                return quickselect(i, arr[i:j].index(pivot), k)
-            elif k < l + eq:
-                return pivot
-            else:
-                return quickselect(j, arr[j-1:i-1:-1].index(pivot) + 1, k - l - eq)
+        assert False
