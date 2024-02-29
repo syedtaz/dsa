@@ -1,23 +1,11 @@
-import heapq
-from typing import List
 from collections import Counter
+from typing import List
+
 
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
+        counts = Counter(tasks)
+        _, max_v = counts.most_common(1)[0]
+        ntasks = sum([1 if v == max_v else 0 for v in counts.values()])
 
-        temp = [(k, v) for k, v in Counter(tasks).items()]
-        queue = [(idx, k, v) for idx, (k, v) in enumerate(temp)]
-        heapq.heapify(queue)
-        time = 0
-
-        while len(queue) > 0:
-            next, key, count = heapq.heappop(queue)
-            if time <= next:
-              time = next + 1
-            if count > 1:
-                heapq.heappush(queue, (time + n, key, count - 1)) # type: ignore
-
-        return time
-
-# s = Solution()
-# print(s.leastInterval(tasks = ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 2))
+        return max(len(tasks), (max_v - 1) * (n + 1) + ntasks)

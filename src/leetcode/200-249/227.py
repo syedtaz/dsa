@@ -1,48 +1,53 @@
 class Solution:
     def calculate(self, s: str) -> int:
 
-        ops : set[str] = {'+', '-', '/', '*'}
+        operands: list[int] = []
+        operators: list[str] = []
 
-        def f(i: int, prev: int | None, op: str) -> int:
-            print(prev)
+        def unwind_mult() -> None:
+            while len(operators) > 0 and (operators[-1] == "*" or operators[-1] == "/"):
+                a = operands.pop()
+                b = operands.pop()
+                op = operators.pop()
+
+                if op == "*":
+                    operands.append(a * b)
+                else:
+                    operands.append(int(b / a))
+
+        def traverse(i: int) -> None:
             if i >= len(s):
-                assert prev is not None
-                return prev
+                return
 
-            if s[i] == ' ':
-                return f(i + 1, prev, op)
-
-            if s[i] in ops:
-                return f(i + 1, prev, s[i])
-
-            j = i
-            next = ""
-            while j <= len(s) - 1 and s[j] not in ops:
-                next += s[j]
-                j += 1
-
-            next = int(next)
-            if op == "":
-                return f(j + 1, next, "")
-            match op:
-                case '+':
-                    prev = 0 if prev is None else prev
-                    return f(j + 1, prev + next, "")
-                case '-':
-                    prev = 0 if prev is None else prev
-                    return f(j + 1, prev - next, "")
-                case '*':
-                    prev = 1 if prev is None else prev
-                    return f(j + 1, prev * next, "")
-                case '/':
-                    prev = 1 if prev is None else prev
-                    return f(j + 1, prev // next, "")
-                case "":
-                    return f(j + 1, prev, "")
+            match s[i]:
+                case " ":
+                    traverse(i + 1)
+                case "+" | "-" | "*" | "/":
+                    operators.append(s[i])
+                    traverse(i + 1)
                 case _:
-                    assert False
 
-        return f(0, None, "")
+                    acc = ""
 
-s = Solution()
-print(s.calculate("1+1"))
+                    while i < len(s) and s[i] not in {"+", "-", "*", "/", " "}:
+                        acc += s[i]
+                        i += 1
+
+                    operands.append(int(acc))
+                    unwind_mult()
+
+                    return traverse(i)
+
+        traverse(0)
+
+        while len(operators) > 0:
+            a = operands.pop()
+            b = operands.pop()
+            op = operators.pop()
+
+            if op == "+":
+                operands.append(a + b)
+            else:
+                operands.append(b - a)
+
+        return operands.pop()
