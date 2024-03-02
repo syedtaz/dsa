@@ -1,72 +1,77 @@
-import random
-from sys import maxsize
 from typing import Callable
+from random import randint
+from enum import Enum
 
 
-class UniversalHash:
-    M = 20
-    f: Callable[[int], int]
+def hashf(a: int, x: int, m: int) -> int:
+    return ((a * x) >> (32 - m)) & 0xFFFFFFFF
 
-    def __init__(self) -> None:
+def define_hashf(m: int) -> Callable[[int], int]:
+    a = randint(1, m)
 
-        chain = [self._generate() for _ in range(5)]
+    while a % 2 != 1:
+        a = randint(1, m)
 
-        def h(x: int) -> int:
-            acc = x
-            for f in chain:
-                acc = f(acc)
-            return acc
+    return lambda x: hashf(a, x, m)
 
-        self.f = h
+class Result(Enum):
+    present = 0
+    absent = 1
+    full = 2
 
-    def _generate(self) -> Callable[[int], int]:
-        a = random.randint(1, maxsize)
-        a = a + 1 if a % 2 != 1 else a
-        return lambda x: ((x * a) % maxsize) >> (64 - 20)
+
+def search(
+    x: int, m: int, bins: list[int], hfunc: Callable[[int], int]
+) -> tuple[Result, int]:
+    for i in range(m):
+        idx = hfunc(x) ^ i
+        if bins[idx] == x:
+            return (Result.present, idx)
+        elif bins[idx] == -1:
+            return (Result.absent, -1)
+
+    return (Result.full, -1)
 
 
 class MyHashMap:
-    hashfunc: UniversalHash
-    bins: list[list[tuple[int, int]]]
+    bins: list[tuple[int, int]]
+    m: int
+    f: Callable[[int], int]
 
     def __init__(self) -> None:
-        self.hashfunc = UniversalHash()
-        self.bins = [[(-1, -1)]] * 1048576
+        self.m = 10
+        self.bins = [(-1, -1) for _ in range(2 ** self.m)]
+        self.f = define_hashf(self.m)
+
+    def _search(self, key: int) -> tuple[Result, int, int]:
+
+        for i in range(self.m):
+            idx = self.f(key) ^ i
+            k_prime, v_prime = self.bins[idx]
+            if k_prime == key:
+                return (Result.present, idx, v_prime)
+            elif k_prime == -1:
+                return (Result.absent, idx, -1)
+
+        return (Result.full, 0, -1)
+
 
     def put(self, key: int, value: int) -> None:
-        idx = self.hashfunc.f(key) - 1
-
-        if self.bins[idx][0] == (-1, -1):
-            self.bins[idx] = [(key, value)]
-            return
-
-        for i, (k, _) in enumerate(self.bins[idx]):
-            if k == key:
-                self.bins[idx][i] = (k, value)
+        match self._search(key):
+            case (Result.absent, i, _) | (Result.present, i, _):
+                self.bins[i] = (key, value)
                 return
+            case (Result.full, _, _):
 
-        self.bins[idx].append((key, value))
+
+
 
     def get(self, key: int) -> int:
-        idx = self.hashfunc.f(key) - 1
-
-        for k, v in self.bins[idx]:
-            if k == key:
+        match self._search(key):
+            case (Result.absent, _, _) | (Result.full, _, _):
+                return -1
+            case (Result.present, _, v):
                 return v
 
-        return -1
 
     def remove(self, key: int) -> None:
-        idx = self.hashfunc.f(key) - 1
-        candidate = None
-
-        for i, (k, _) in enumerate(self.bins[idx]):
-            if k == key:
-                candidate = i
-
-        if candidate is not None:
-            self.bins[idx].pop(candidate)
-
-        if len(self.bins[idx]) == 0:
-            self.bins[idx].append((-1, -1))
-
