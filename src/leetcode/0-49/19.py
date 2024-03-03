@@ -6,7 +6,7 @@ class ListNode:
     val: int
     next: Optional["ListNode"]
 
-    def __init__(self, val: int = 0, next: Optional["ListNode"] = None):
+    def __init__(self, val: int = 0, next: Optional["ListNode"] = None) -> None:
         self.val = val
         self.next = next
 
@@ -14,18 +14,26 @@ class ListNode:
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 
-        if head is None:
-            return None
+        def length(node: Optional[ListNode]) -> int:
+            acc = 0
 
-        cur = head
-        prev = head
+            while node is not None:
+                node, acc = node.next, acc + 1
 
-        for _ in range(n):
-            cur = cur.next
+            return acc
 
-        while cur is not None and cur.next is not None:
-            cur, prev = cur.next, prev.next
+        def advance(node: ListNode, k: int) -> ListNode:
+            cur, nxt = node, node.next
 
-        prev.next = prev.next.next
+            while nxt is not None and k > 1:
+                cur, nxt, k = cur.next, nxt.next, k - 1
 
-        return head
+            return cur
+
+        match (k := length(head) - n) <= 0:
+            case True:
+                return None if k < 0 else head.next
+            case False:
+                x = advance(head, k)
+                x.next = x.next.next
+                return head
