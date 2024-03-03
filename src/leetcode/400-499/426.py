@@ -17,22 +17,22 @@ class Node:
 class Solution:
     def treeToDoublyList(self, root: "Optional[Node]") -> "Optional[Node]":
 
-        current : Optional[Node] = root
-        stack : list[Node] = []
-        head : Optional[Node] = None
+        def fold(node: "Optional[Node]", acc: list["Node"]) -> list["Node"]:
+            if node is None:
+                return acc
 
-        while True:
-            if current is not None:
-                stack.append(current)
-                current = current.left
-                continue
+            return fold(node.left, acc) + [node] + fold(node.right, acc)
 
-            if len(stack) > 0:
-                current = stack.pop()
-                if head is not None:
-                    head.right = current
-                    current.left = next
-                else:
+        result = fold(root, [])
+        head, tail = result[0], result[-1]
+
+        for (l, r) in zip(result, result[1:]):
+            l.right = r
+            r.left = l
+
+        head.left = tail
+        tail.right = head
+        return head
 
 
 
