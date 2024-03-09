@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 hypothesis = "^6.92.1"
+pytest = "^8.1.1"
 
 [build-system]
 requires = ["poetry-core"]
