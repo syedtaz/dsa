@@ -1,18 +1,27 @@
-from string import ascii_uppercase
-
+from functools import cache
 
 class Solution:
     def numDecodings(self, s: str) -> int:
 
-        mapping = {str(v): k for v, k in enumerate(ascii_uppercase)}
+        maps : set[str] = {str(x) for x in range(1, 27)}
+        nums : list[str] = list(s)
 
-        def match(x: str) -> list[str]:
-            return [mapping[key] for key in mapping if x[: len(key)] == key]
+        @cache
+        def f(i: int) -> int:
+            if i == len(nums):
+                return 1
 
-        A : set[str] = set()
+            if nums[i] == '0':
+                return 0
 
-        def f(x: str) -> str | None:
-            if x == "":
-                return x
+            if i == len(nums) - 1:
+                return 1
 
-            for s in s
+            acc = f(i + 1)
+
+            if "".join(nums[i:i+2]) in maps:
+                acc += f(i + 2)
+
+            return acc
+
+        return f(0)

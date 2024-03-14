@@ -13,35 +13,24 @@ class ListNode:
 class Solution:
     def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        cur = head
-        stack: list[tuple[ListNode, int]] = []
-        sum = 0
+        dummy = ListNode(0, head)
+        d = {0: dummy}
+        prefix_sum = 0
 
-        while cur is not None:
+        while head:
+            prefix_sum += head.val
+            node = d.get(prefix_sum)
 
-            if len(stack) > 0 and stack[-1][1] + cur.val == 0:
+            if node:
+                curr, _sum = node, prefix_sum
 
-                value = cur.val
+                while curr.next is not head:
+                    curr = curr.next
+                    _sum += curr.val
+                    d.pop(_sum)
 
-                while stack[-1][1] + value != 0:
-                  x, s = stack.pop()
-                  sum = s
-                  value -= x.val
-                continue
-
-            sum += cur.val
-            stack.append((cur, sum))
-            cur = cur.next
-
-        if len(stack) == 0:
-            return None
-
-        acc, _ = stack.pop()
-        acc.next = None
-
-        while len(stack) > 0:
-            v, _ = stack.pop()
-            v.next = acc
-            acc = v
-
-        return acc
+                node.next = head.next
+            else:
+                d[prefix_sum] = head
+            head = head.next
+        return dummy.next
