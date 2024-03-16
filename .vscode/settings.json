@@ -4,4 +4,7 @@
   "[lisp]": {
     "editor.wordSeparators": "`|;:'\",()"
   },
+  "[commonlisp]": {
+    "editor.wordSeparators": "`|;:'\",()"
+  },
 }
