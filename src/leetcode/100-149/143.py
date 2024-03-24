@@ -1,44 +1,35 @@
 # Definition for singly-linked list.
+from nodedef import *
+
 from typing import Optional
 
+def middle(turtle: ListNode, hare: Optional[ListNode]) -> ListNode:
+    return (
+        turtle
+        if hare is None or hare.next is None
+        else middle(turtle.next, hare.next.next) # type: ignore
+    )
 
-class ListNode:
-    val: int
-    next: Optional["ListNode"]
+def reverse(node: Optional[ListNode], acc: Optional[ListNode]) -> ListNode:
+    if node is None:
+        return acc # type: ignore
 
-    def __init__(self, val: int = 0, next: Optional["ListNode"] = None):
-        self.val = val
-        self.next = next
+    temp = node.next
+    node.next = acc
+    return reverse(temp, node)
 
-    def __repr__(self) -> str:
-        return f"{self.val} -> {self.next.__repr__()}"
 
+def merge(left: Optional[ListNode], right: Optional[ListNode]) -> None:
+    if right.next is None:
+        return
+
+    left.next, temp = right, left.next
+    right.next, temp2 = temp, right.next
+    return merge(temp, temp2)
 
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-
         if head is None or head.next is None:
             return
 
-        def length(node: Optional[ListNode], acc: int) -> int:
-            return acc if node is None else length(node.next, acc + 1)
-
-        def nth(node: Optional[ListNode], n: int) -> Optional[ListNode]:
-            if node is None:
-                return None
-
-            return node if n == 0 else nth(node.next, n - 1)
-
-        def reverse(node: Optional[ListNode]) -> None:
-            if node is None or node.next is None:
-                print(node)
-                return None
-
-            l = reverse(node.next)
-            node.next.next = node
-            node.next = None
-            return l
-
-
-s = Solution()
-s.reorderList(ListNode(1, ListNode(2, ListNode(3, ListNode(4, None)))))
+        return merge(head, reverse(middle(head, head), None))
