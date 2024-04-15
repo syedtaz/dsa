@@ -1,45 +1,26 @@
 from collections import deque
 
+
 class MyStack:
-    front : deque[int]
-    back : deque[int]
+    state: deque[int]
 
     def __init__(self) -> None:
-        self.front = deque([])
-        self.back = deque([])
-
+        self.state = deque([])
 
     def push(self, x: int) -> None:
-        self.back.append(x)
-        return
-
+        self.state.append(x)
+        size = len(self.state)
+        while size > 1:
+            self.state.append(self.state.popleft())
+            size -= 1
 
     def pop(self) -> int:
-        _ = self.top()
-        return self.front.popleft()
-
-    def rewind(self) -> None:
-        cur = self.front
-        self.front.clear()
-        self.rewind_aux()
-
-        for k in cur:
-            self.front.append(k)
-
-
-    def rewind_aux(self) -> None:
-        if len(self.back) == 0:
-            return
-
-        x = self.back.popleft()
-        self.rewind_aux()
-        self.front.append(x)
+        return self.state.popleft()
 
 
     def top(self) -> int:
-        self.rewind()
-        return self.front[0]
-
+        return self.state[0]
 
     def empty(self) -> bool:
-        return len(self.front) == 0 and len(self.back) == 0
+        return len(self.state) == 0
+
