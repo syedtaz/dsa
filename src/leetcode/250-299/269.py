@@ -1,63 +1,86 @@
 from typing import List
-from collections import defaultdict
+from collections import deque, defaultdict
+from pprint import pprint
 from enum import Enum
+
+graph_t = dict[str, set[str]]
+
+
+class Status(Enum):
+    Finished = 0
+    Active = 1
+    New = 2
 
 
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
-        def construct(words: List[str]) -> tuple[dict[str, list[str]], set[str]]:
-            graph: dict[str, set[str]] = defaultdict(set)
-            seen: set[str] = set()
 
-            for word in words:
-                for idx, a in enumerate(word):
-                    if a not in graph:
-                        graph[a] = set()
-                    for b in word[idx + 1 :]:
-                        if a != b:
-                          graph[a].add(b)
-                          seen.add(a)
-                          seen.add(b)
+        def construct(words: list[str]) -> graph_t:
+            queue: deque[tuple[int, list[str]]] = deque(
+                [(0, list(x)[::-1]) for x in words]
+            )
+            graph: graph_t = defaultdict(set)
+            current_level = 0
+            wavefront: list[str] = []
 
-            return {k: list(v) for k, v in graph.items()}, seen
+            while len(queue) > 0:
+                level, word = queue.popleft()
 
-        graph, vertices = construct(words=words)
-        print(graph)
+                if len(word) == 0:
+                    continue
 
-        class Status(Enum):
-            ACTIVE = 0
-            NEW = 1
-            FINISHED = 2
+                if current_level != level:
+                    current_level = level
+                    wavefront.clear()
 
-        status = {}
+                char = word.pop()
 
-        def isAcyclicDFS(v: str) -> bool:
-            status[v] = Status.ACTIVE
-            for edge in graph[v]:
-                if status[edge] == Status.ACTIVE:
-                    return False
-                elif status[edge] == Status.NEW:
-                    if not isAcyclicDFS(edge):
-                        return False
+                for prev in wavefront:
+                    if prev != char:
+                        graph[prev].add(char)
 
-            status[v] = Status.FINISHED
-            return True
+                wavefront.append(char)
+                queue.append((level + 1, word))
 
-        def isAcyclic(g: dict[str, list[str]]) -> bool:
-            for v in vertices:
-                status[v] = Status.NEW
+            return graph
 
-            for u in vertices:
-                if status[u] == Status.NEW:
-                    if not isAcyclicDFS(u):
-                        return False
+        def dfs(
+            v: str,
+            graph: graph_t,
+            clock: int,
+            order: list[str],
+            status: dict[str, Status],
+        ) -> int:
 
-            return True
+            status[v] = Status.Active
 
-        if not isAcyclic(graph):
-            return "not doable"
+            for w in graph[v]:
+                if status[w] == Status.New:
+                    clock = dfs(w, graph, clock, order, status)
+                elif status[w] == Status.Active:
+                    print(f"Exception: {v} -> {w}")
+                    raise Exception
 
-        return "doable"
+            status[v] = Status.Finished
+            order[clock] = v
+            clock = clock - 1
+            return clock
+
+        def topsort(graph: graph_t) -> list[str]:
+            status: dict[str, Status] = {vertex: Status.New for vertex in graph.keys()}
+            clock = len(status)
+            order = ["" for _ in range(len(status))]
+
+            for v, stat in status.items():
+                if stat == Status.New:
+                    try:
+                        clock = dfs(v, graph, clock, order, status)
+                    except Exception:
+                        return []
+
+            return order
+
+        return "".join(topsort(construct(words)))
 
 
 s = Solution()
