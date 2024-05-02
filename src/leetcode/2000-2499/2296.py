@@ -1,93 +1,124 @@
-# Design a text editor with a cursor that can do the following:
-
-# Add text to where the cursor is.
-# Delete text from where the cursor is (simulating the backspace key).
-# Move the cursor either left or right.
-# When deleting text, only characters to the left of the cursor will be deleted.
-# The cursor will also remain within the actual text and cannot be moved beyond it.
-# More formally, we have that 0 <= cursor.position <= currentText.length always holds.
-
-# Implement the TextEditor class:
-
-# TextEditor() Initializes the object with empty text.
-# void addText(string text) Appends text to where the cursor is.
-# The cursor ends to the right of text.
-
-# int deleteText(int k) Deletes k characters to the left of the cursor.
-# Returns the number of characters actually deleted.
-
-# string cursorLeft(int k) Moves the cursor to the left k times.
-# Returns the last min(10, len) characters to the left of the cursor, where len
-# is the number of characters to the left of the cursor.
-
-# string cursorRight(int k) Moves the cursor to the right k times. Returns the
-# last min(10, len) characters to the left of the cursor, where len is the number
-# of characters to the left of the cursor.
-
-from enum import Enum
-
-class Left(Enum):
-   t = 1
-
-class Right(Enum):
-   t = 1
-
-class Node():
-  val: str
-  prev: 'Node | Left'
-  next: 'Node | Right'
-
-  def __init__(self, val : str, prev = None, next = None):
-     self.val = val
-     self.prev = prev
-     self.next = next
+from dataclasses import dataclass
+from typing import Optional
 
 
-def collect_aux(cur: Node | Right, end: Node | Right, acc: str) -> str:
-   if cur == end:
-      return acc
+@dataclass
+class Node:
+    value: str
+    left: Optional["Node"]
+    right: Optional["Node"]
 
-   assert cur is not Right.t
-   return collect_aux(cur.next, end, acc + cur.val)
 
-def collect(begin: Node, end: Node | Right) -> str:
-  return collect_aux(begin, end, "")
+class DList:
+    _head: Node | None
+    _tail: Node | None
+    _length: int
+
+    def __init__(self) -> None:
+        self._head, self._tail = None, None
+        self._length = 0
+
+    def add_btwn(self, data: str, before: Node | None, after: Node | None) -> Node:
+        node = Node(data, before, after)
+        if before == self._tail:
+            self._tail = node
+        if after == self._head:
+            self._head = node
+        self._length += 1
+        return node
+
+    def add_first(self, data: str) -> Node:
+        self.add_btwn(data, None, self._head)
+        assert self._head is not None
+        return self._head
+
+    def add_last(self, data: str) -> Node:
+        self.add_btwn(data, self._tail, None)
+        assert self._tail is not None
+        return self._tail
+
+    def remove(self, node: Node) -> Node | None:
+        before, after = node.left, node.right
+
+        if node == self._head:
+            self._head = after
+        else:
+            before.right = after  # type: ignore
+
+        if node == self._tail:
+            self._tail = before
+        else:
+            after.left = before  # type: ignore
+
+        self._length -= 1
+        return before
 
 
 class TextEditor:
-  cursor : Node | None
-  left : Node | None
+    cursor: Node | None
+    dlist: DList
 
-  def is_empty(self) -> bool:
-     return self.cursor is None and self.left is None
+    def __init__(self) -> None:
+        self.cursor = None
+        self.dlist = DList()
 
-  def adjust_cursor(self) -> None:
-     count = 0
-     cur = self.cursor
-     if cur is None:
-        return
+    def addText(self, text: str) -> None:
+        if text == "":
+            return
 
-     if cur.prev is Left.t:
-        return
+        iterator = iter(text)
 
+        if self.cursor is None:
+            self.cursor = self.dlist.add_first(next(iterator))
 
-     while cur.prev is not Sentinel.LEFT or count != 10:
-      cur = cur.prev
-      count += 1
+        for item in iterator:
+            assert self.cursor is not None
+            self.cursor = self.dlist.add_btwn(item, self.cursor, self.cursor.right)
 
-  def __init__(self):
-     self.cursor, self.left, self.right = None, None, None
+    def deleteText(self, k: int) -> int:
+        count = 0
 
-  def addText(self, text: str) -> None:
-    if self.is_empty():
+        while self.cursor is not None and k > 0:
+            self.cursor = self.dlist.remove(self.cursor)
+            count += 1
+            k -= 1
 
+        return count
 
+    def cursorLeft(self, k: int) -> str:
+        while self.cursor is not None and k > 0:
+            self.cursor = self.cursor.left
+            k -= 1
 
+        if self.cursor is None:
+            return ""
 
-  def deleteText(self, k: int) -> int:
+        acc: list[str] = []
+        count = 10
+        cursor = self.cursor.left
 
+        while cursor is not None and count > 0:
+            acc.append(self.cursor.value)
+            cursor = cursor.left
+            count -= 1
 
-  def cursorLeft(self, k: int) -> str:
+        return "".join(acc[::-1])
 
+    def cursorRight(self, k: int) -> str:
+        while self.cursor is not None and k > 0:
+            self.cursor = self.cursor.right
+            k -= 1
 
-  def cursorRight(self, k: int) -> str:
+        if self.cursor is None:
+            return ""
+
+        acc: list[str] = []
+        count = 10
+        cursor = self.cursor.left
+
+        while cursor is not None and count > 0:
+            acc.append(self.cursor.value)
+            cursor = cursor.right
+            count -= 1
+
+        return "".join(acc)

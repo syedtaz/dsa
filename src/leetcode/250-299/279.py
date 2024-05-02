@@ -1,17 +1,19 @@
 from functools import cache
-from math import ceil, sqrt
+from math import sqrt
+
 
 class Solution:
     def numSquares(self, n: int) -> int:
 
         @cache
-        def f(k: int, acc: int) -> int:
-            if k <= 1:
-                return acc + 1
+        def f(i: int) -> int:
+            if i <= 1:
+                return i
 
-            return min([f(k - j ** j, acc + 1) for j in range(1, int(ceil(sqrt(k))))])
+            return min(
+                [1 + f(i - k)
+                for j in range(1, int(sqrt(i)) + 1)
+                if (k := j**2) <= i]
+            )
 
-        return f(n, 1)
-
-s = Solution()
-print(s.numSquares(13))
+        return f(n)
