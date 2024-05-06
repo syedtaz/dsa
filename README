@@ -2,8 +2,14 @@ Personal repository for practicing data structures and algorithms.
 
 Some statistics if you're interested :)
 
-| Easy | Medium | Hard |
-|------|--------|------|
-| 219  |   220  |  15  |
+Easy:   ███▁▁▁▁▁▁▁      30% / 240
+Medium: ██▁▁▁▁▁▁▁▁▁▁▁▁▁ 14% / 228
+Hard:   ▂▁▁▁▁▁▁         2%  / 15
 
-Repository LOC approximately 8599
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Python                         449           3205            286           8596
+SQL                             32              0              0            409
+TypeScript                       4              7              0             30
+C++                              2              2              0             25
