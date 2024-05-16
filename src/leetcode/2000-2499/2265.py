@@ -1,21 +1,27 @@
-from typing import Optional
+from nodedef import TreeNode
 
-class TreeNode:
-    val : int
-    left : Optional["TreeNode"]
-    right : Optional["TreeNode"]
-
-    def __init__(self, val : int, left : Optional["TreeNode"], right : Optional["TreeNode"]) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
 
 class Solution:
     def averageOfSubtree(self, root: TreeNode) -> int:
 
-        def traverse(node: TreeNode) -> int:
-            if node.left is None and node.right is None:
-                return node.val
+        acc = 0
 
-            if node.left is None:
-                return node.val +
+        def traverse(node: TreeNode | None) -> tuple[int, int]:
+            if node is None:
+                return (0, 0)
+
+            nonlocal acc
+
+            l, lc = traverse(node.left)
+            r, rc = traverse(node.right)
+
+            total = l + r + node.val
+            count = 1 + lc + rc
+
+            if node.val == (total // count):
+                acc += 1
+
+            return (total, count)
+
+        traverse(root)
+        return acc
