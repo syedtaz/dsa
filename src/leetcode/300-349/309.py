@@ -1,9 +1,9 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-
         @cache
         def f(i: int) -> int:
             if i >= len(prices) - 1:

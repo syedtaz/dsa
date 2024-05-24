@@ -1,6 +1,7 @@
 import heapq
 from math import sqrt
 
+
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
         def moves(a: int, b: int) -> list[tuple[int, int]]:
@@ -18,8 +19,8 @@ class Solution:
         def distance(a: int, b: int) -> float:
             return sqrt((x - a) ** 2 + (y - b) ** 2)
 
-        queue : list[tuple[float, int, int, int]] = [(distance(0, 0), 0, 0, 0)]
-        seen : set[tuple[int, int]] = set()
+        queue: list[tuple[float, int, int, int]] = [(distance(0, 0), 0, 0, 0)]
+        seen: set[tuple[int, int]] = set()
 
         while len(queue) > 0:
             _, level, a, b = heapq.heappop(queue)

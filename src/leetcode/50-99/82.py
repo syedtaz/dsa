@@ -20,7 +20,11 @@ class Solution:
         prev = S
 
         def skip(node: ListNode) -> ListNode:
-            return node if node.next is None or node.val != node.next.val else skip(node.next)
+            return (
+                node
+                if node.next is None or node.val != node.next.val
+                else skip(node.next)
+            )
 
         def traverse(node: Optional[ListNode], prev: ListNode) -> None:
             if node is None:

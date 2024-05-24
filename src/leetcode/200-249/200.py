@@ -43,7 +43,6 @@ class UnionFind:
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-
         graph = UnionFind(grid)
         m, n = len(grid), len(grid[0])
 

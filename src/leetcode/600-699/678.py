@@ -3,8 +3,8 @@ class Solution:
         left, right = 0, 0
 
         for c in s:
-            left += 1 if c == '(' else -1
-            right += 1 if c != ')' else - 1
+            left += 1 if c == "(" else -1
+            right += 1 if c != ")" else -1
             if right < 0:
                 break
             left = max(left, 0)

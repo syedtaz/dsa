@@ -1,6 +1,7 @@
 from typing import List
 from collections import defaultdict
 
+
 class SQL:
     ids: dict[str, int]
     state: dict[str, defaultdict[int, list[str]]]

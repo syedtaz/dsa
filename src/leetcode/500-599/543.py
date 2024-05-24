@@ -20,9 +20,9 @@ class TreeNode:
 
 from functools import cache
 
+
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-
         @cache
         def depth(node: Optional[TreeNode]) -> int:
             return 0 if node is None else 1 + max(depth(node.left), depth(node.right))

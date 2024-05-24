@@ -10,7 +10,6 @@ class State(Enum):
 
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-
         lst = [False for _ in range(len(graph))]
         status = [State.New for _ in range(len(graph))]
 

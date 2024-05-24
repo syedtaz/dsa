@@ -1,13 +1,12 @@
 from collections import defaultdict
 
+
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
-
-        count : dict[str, int] = defaultdict(int)
+        count: dict[str, int] = defaultdict(int)
         i, ans = 0, 0
 
         for j, ch in enumerate(s):
-
             count[ch] += 1
 
             while len(count) > k:

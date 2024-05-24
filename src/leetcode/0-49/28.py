@@ -7,7 +7,7 @@ class Solution:
         i, j = 0, len(needle) - 1
 
         while j != len(haystack):
-            if hash(haystack[i:j+1]) == target:
+            if hash(haystack[i : j + 1]) == target:
                 return i
             i, j = i + 1, j + 1
 

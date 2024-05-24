@@ -1,7 +1,7 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
         i, count = 0, 0
-        acc : list[str] = []
+        acc: list[str] = []
 
         while True:
             if i >= len(s):
@@ -12,7 +12,7 @@ class Solution:
 
                 while True:
                     if count <= 0:
-                        return s[:j+1] + "".join(acc)[::-1]
+                        return s[: j + 1] + "".join(acc)[::-1]
 
                     if s[j] == "(":
                         j, count = j - 1, count - 1

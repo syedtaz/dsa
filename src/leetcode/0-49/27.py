@@ -17,9 +17,9 @@ from typing import List
 
 #         return f(0, len(nums) - 1)
 
+
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-
         i, j = 0, len(nums) - 1
 
         while True:
@@ -34,4 +34,3 @@ class Solution:
                     i, j = i, j - 1
                 case _:
                     i, j = i + 1, j
-

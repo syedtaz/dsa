@@ -1,8 +1,8 @@
 from math import log2
 
+
 class Solution:
     def hammingWeight(self, n: int) -> int:
-
         def check(i: int, idx: int) -> int:
             return 1 if (i >> idx) & 1 == 1 else 0
 

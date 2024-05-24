@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         class DisjointSet:
@@ -35,18 +36,18 @@ class Solution:
 
         pts = [(x[0], x[1]) for x in points]
 
-        edges : list[tuple[tuple[int, int], tuple[int, int], int]]= []
+        edges: list[tuple[tuple[int, int], tuple[int, int], int]] = []
         for idx, (xa, ya) in enumerate(pts):
-            for (xb, yb) in pts[idx + 1:]:
-                edges.append(((xa, ya), (xb, yb), abs(xa - xb) + abs(ya -yb)))
-        edges.sort(key = lambda x: x[2])
+            for xb, yb in pts[idx + 1 :]:
+                edges.append(((xa, ya), (xb, yb), abs(xa - xb) + abs(ya - yb)))
+        edges.sort(key=lambda x: x[2])
 
         dset = DisjointSet()
         for pt in pts:
             dset.make_set(pt)
 
-        f : list[int] = []
-        for (u, v, w) in edges:
+        f: list[int] = []
+        for u, v, w in edges:
             if len(f) == len(points) - 1:
                 break
             if dset.find(u) != dset.find(v):
@@ -57,4 +58,4 @@ class Solution:
 
 
 s = Solution()
-print(s.minCostConnectPoints(points=[[3,12],[-2,5],[-4,1]]))
+print(s.minCostConnectPoints(points=[[3, 12], [-2, 5], [-4, 1]]))

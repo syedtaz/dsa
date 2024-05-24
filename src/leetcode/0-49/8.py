@@ -16,9 +16,9 @@ class Solution:
         def sign_start(x: str) -> tuple[bool, int]:
             assert len(x) > 0
             match x[0]:
-                case '+':
+                case "+":
                     return False, 1
-                case '-':
+                case "-":
                     return True, 1
                 case _:
                     return False, 0
@@ -27,13 +27,13 @@ class Solution:
             count, acc = 0, 0
 
             for x in xs:
-                acc += int(x) * (10 ** count)
+                acc += int(x) * (10**count)
                 count += 1
 
             return acc
 
         def clamp(x: int) -> int:
-            b = (2 ** 31)
+            b = 2**31
             if x <= b * -1:
                 return b * -1
             elif x >= b - 1:

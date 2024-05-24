@@ -13,14 +13,12 @@ class Foo:
         self.ref_thd = asyncio.Event()
 
     async def first(self, printFirst: "Callable[[], None]") -> None:
-
         # printFirst() outputs "first". Do not change or remove this line.
         printFirst()
         asyncio.run(self.ref_thd.wait())
         self.ref_fst.set()
 
     async def second(self, printSecond: "Callable[[], None]") -> None:
-
         await self.ref_fst.wait()
 
         # printSecond() outputs "second". Do not change or remove this line.
@@ -29,7 +27,6 @@ class Foo:
         self.ref_sec.set()
 
     async def third(self, printThird: "Callable[[], None]") -> None:
-
         await self.ref_sec.wait()
         # printThird() outputs "third". Do not change or remove this line.
         printThird()

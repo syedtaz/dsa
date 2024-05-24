@@ -1,9 +1,9 @@
 from collections import Counter
 
+
 class Solution:
     def equalFrequency(self, word: str) -> bool:
-
-        counter : dict[str, int] = Counter(word)
+        counter: dict[str, int] = Counter(word)
         vs = sorted(set(counter.values()))
 
         if len(vs) != 2:
@@ -14,4 +14,3 @@ class Solution:
             return False
 
         return True
-

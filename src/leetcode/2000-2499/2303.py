@@ -9,7 +9,7 @@ class Solution:
 
         acc = 0.0
         current = income
-        for (amount, [_, rate]) in zip(amounts, brackets):
+        for amount, [_, rate] in zip(amounts, brackets):
             taxable = amount if current >= amount else current
             current -= taxable
             acc += taxable * (rate / 100)

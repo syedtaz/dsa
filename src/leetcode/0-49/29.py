@@ -1,6 +1,5 @@
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-
         def f(r: int, b: int) -> int:
             q = 0
             while r >= 0:
@@ -12,8 +11,6 @@ class Solution:
 
         if dividend < 0:
             ans = f(abs(dividend), divisor)
-
-
 
 
 s = Solution()

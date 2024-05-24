@@ -5,7 +5,6 @@ from typing import Optional
 
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
-
         def fold(
             node: Optional[TreeNode],
             acc: int,

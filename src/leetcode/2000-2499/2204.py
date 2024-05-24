@@ -1,9 +1,9 @@
 from typing import List
 from math import inf
 
+
 class Solution:
     def distanceToCycle(self, n: int, edges: List[List[int]]) -> List[int]:
-
         dist = [inf for _ in range(n)]
         dist[0] = 0.0
 

@@ -16,7 +16,7 @@ class Solution:
                 parents[x] = find(parents[x])
             return parents[x]
 
-        def union(x : int, y: int) -> None:
+        def union(x: int, y: int) -> None:
             x2 = find(x)
             y2 = find(y)
 
@@ -44,6 +44,7 @@ class Solution:
             _ = find(i)
 
         return len(set(parents.values()))
+
 
 # s = Solution()
 # print(s.findCircleNum(isConnected=[[1,0,0,1],

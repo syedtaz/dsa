@@ -1,9 +1,8 @@
+from math import log, floor
+
+
 class Solution:
+    divisor = 3 ** int(floor(log(2**31, 3)))
+
     def isPowerOfThree(self, n: int) -> bool:
-
-        # n = 3 ^ x for some x
-        # => n - 3 ^ x = 0
-
-        def f(x: int) -> bool:
-            return abs(n - (3 ** x)) <= 0.0001
-
+        return n > 0 and self.divisor % n == 0

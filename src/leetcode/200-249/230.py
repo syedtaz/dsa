@@ -20,7 +20,6 @@ class TreeNode:
 
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-
         def fold(node: Optional[TreeNode], acc: list[int]) -> list[int]:
             return (
                 acc

@@ -1,10 +1,10 @@
 from typing import List
 
+
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-
-        seen : set[int] = set(nums)
-        acc : int = 0
+        seen: set[int] = set(nums)
+        acc: int = 0
 
         def streak(number: int) -> int:
             acc = 1

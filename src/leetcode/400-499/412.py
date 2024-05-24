@@ -1,5 +1,6 @@
 from typing import List
 
+
 def f(i: int) -> str:
     match (i % 3 == 0, i % 5 == 0):
         case (True, True):
@@ -10,6 +11,7 @@ def f(i: int) -> str:
             return "Buzz"
         case _:
             return str(i)
+
 
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:

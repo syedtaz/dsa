@@ -1,7 +1,6 @@
 class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
-
-        acc : set[str] = set()
+        acc: set[str] = set()
 
         def f(idx: int, prev: str) -> None:
             if idx >= len(tiles):
@@ -16,5 +15,6 @@ class Solution:
         print(acc)
         return len(acc)
 
+
 s = Solution()
-print(s.numTilePossibilities(tiles = "AAB"))
+print(s.numTilePossibilities(tiles="AAB"))

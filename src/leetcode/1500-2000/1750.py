@@ -1,6 +1,5 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
-
         i, j = 0, len(s) - 1
 
         while True:

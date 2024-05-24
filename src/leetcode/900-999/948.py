@@ -1,11 +1,12 @@
 from typing import List
 from collections import deque
 
+
 class Solution:
     def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
         tokens.sort()
 
-        queue : deque[int] = deque(tokens)
+        queue: deque[int] = deque(tokens)
         cur_score, cur_power = 0, power
         max_score = 0
 

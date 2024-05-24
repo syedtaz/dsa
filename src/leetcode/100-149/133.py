@@ -9,16 +9,15 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
+
 class Solution:
     def cloneGraph(self, node: Optional["Node"]) -> Optional["Node"]:
-
         if node is None:
             return None
 
-        seen : dict[Node, Node] = {}
+        seen: dict[Node, Node] = {}
 
         def clone(n: Node) -> Node:
-
             if n in seen:
                 return seen[n]
 
@@ -28,10 +27,3 @@ class Solution:
             return new
 
         return clone(node)
-
-
-
-
-
-
-

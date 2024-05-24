@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         N = len(matrix)
@@ -19,10 +20,9 @@ class Solution:
             for k in range(N):
                 i, j = 0, N - 1
                 while i < j:
-                    matrix[k][i], matrix[k][j] =  matrix[k][j], matrix[k][i]
+                    matrix[k][i], matrix[k][j] = matrix[k][j], matrix[k][i]
                     i, j = i + 1, j - 1
             return None
-
 
         transpose(0)
         flip()

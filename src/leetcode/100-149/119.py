@@ -3,7 +3,6 @@ from functools import cache
 
 
 class Solution:
-
     @cache
     def pascal(self, i: int) -> list[int]:
         if i == 0:

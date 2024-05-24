@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def removeComments(self, source: List[str]) -> List[str]:
-
         def f(i: int, multi: bool, acc: list[str]) -> list[str]:
             if i >= len(source):
                 return acc
@@ -52,4 +51,20 @@ class Solution:
 
 
 s = Solution()
-print(s.removeComments(source = ["/*Test program */", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/* This is a test", "   multiline  ", "   comment for ", "   testing */", "a = b + c;", "}"]))
+print(
+    s.removeComments(
+        source=[
+            "/*Test program */",
+            "int main()",
+            "{ ",
+            "  // variable declaration ",
+            "int a, b, c;",
+            "/* This is a test",
+            "   multiline  ",
+            "   comment for ",
+            "   testing */",
+            "a = b + c;",
+            "}",
+        ]
+    )
+)

@@ -3,12 +3,10 @@ from typing import List
 
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-
         stack: list[int] = []
         results = [0] * len(temperatures)
 
         for i, temp in enumerate(temperatures):
-
             while len(stack) > 0 and temperatures[stack[-1]] < temp:
                 x = stack.pop()
                 results[x] = i - x

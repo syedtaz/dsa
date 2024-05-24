@@ -34,7 +34,6 @@ class UnionFind:
 
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
-
         n = len(grid)
         uf = UnionFind(n)
         points = sorted([(grid[i][j], i, j) for i, j in product(range(n), range(n))])
@@ -56,5 +55,16 @@ class Solution:
 
         return acc
 
+
 s = Solution()
-print(s.swimInWater(grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]))
+print(
+    s.swimInWater(
+        grid=[
+            [0, 1, 2, 3, 4],
+            [24, 23, 22, 21, 5],
+            [12, 13, 14, 15, 16],
+            [11, 17, 18, 19, 20],
+            [10, 9, 8, 7, 6],
+        ]
+    )
+)

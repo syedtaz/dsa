@@ -25,7 +25,6 @@ class Trie:
 
         current.word = True
 
-
     def search(self, word: str) -> bool:
         current = self.root
 

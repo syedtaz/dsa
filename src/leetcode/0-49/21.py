@@ -2,9 +2,11 @@ from nodedef import *
 
 node = Optional[ListNode]
 
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
+class Solution:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         def merge(left: node, right: node, acc: node) -> tuple[node, node]:
             if left is None and right is None:
                 return acc, None
@@ -36,14 +38,3 @@ class Solution:
 
         if leftover is None:
             return a
-
-
-
-
-
-
-
-
-
-
-

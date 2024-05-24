@@ -1,6 +1,7 @@
 from collections import Counter
 import heapq
 
+
 class Solution:
     def reorganizeString(self, s: str) -> str:
         x = Counter(s)
@@ -11,8 +12,8 @@ class Solution:
 
         queue: list[tuple[int, str]] = [(-v, k) for k, v in x.items()]
         heapq.heapify(queue)
-        acc : str = ""
-        prev : str = queue[-1][1]
+        acc: str = ""
+        prev: str = queue[-1][1]
 
         while len(queue) > 0:
             count, key = heapq.heappop(queue)

@@ -3,7 +3,6 @@ from nodedef import TreeNode
 
 class Solution:
     def averageOfSubtree(self, root: TreeNode) -> int:
-
         acc = 0
 
         def traverse(node: TreeNode | None) -> tuple[int, int]:

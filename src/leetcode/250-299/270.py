@@ -19,7 +19,6 @@ class TreeNode:
 
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-
         if root is None:
             return 0
 

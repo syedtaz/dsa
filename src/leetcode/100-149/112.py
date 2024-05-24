@@ -16,9 +16,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-
         if root is None:
             return False
 
@@ -27,7 +27,9 @@ class Solution:
                 return acc + node.val == targetSum
 
             left = fold(node.left, acc + node.val) if node.left is not None else False
-            right = fold(node.right, acc + node.val) if node.right is not None else False
+            right = (
+                fold(node.right, acc + node.val) if node.right is not None else False
+            )
 
             return left or right
 

@@ -1,10 +1,16 @@
 from nodedef import *
 
+
 class Solution:
-    def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
-
-        def f(l: Optional[ListNode], r: Optional[ListNode], i: int, acc: Optional[ListNode]) -> Optional[ListNode]:
-
+    def mergeInBetween(
+        self, list1: ListNode, a: int, b: int, list2: ListNode
+    ) -> ListNode:
+        def f(
+            l: Optional[ListNode],
+            r: Optional[ListNode],
+            i: int,
+            acc: Optional[ListNode],
+        ) -> Optional[ListNode]:
             if a <= i <= b and r is not None:
                 temp, r.next = r.next, acc
                 return f(l, temp, i, r)

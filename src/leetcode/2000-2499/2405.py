@@ -1,6 +1,5 @@
 class Solution:
     def partitionString(self, s: str) -> int:
-
         seen: set[str] = set()
         acc: list[str] = []
         curr: list[str] = []

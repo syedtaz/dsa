@@ -7,7 +7,6 @@ graph_t = dict[int, list[tuple[int, int]]]
 
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-
         def initSSSP(k: int) -> list[float]:
             dist = [inf] * n
             dist[k - 1] = 0

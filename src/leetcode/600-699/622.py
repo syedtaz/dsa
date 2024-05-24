@@ -1,15 +1,17 @@
 from typing import Optional
 from dataclasses import dataclass
 
+
 @dataclass
 class Node:
     val: int
-    next: Optional['Node']
+    next: Optional["Node"]
+
 
 class MyCircularQueue:
-    head : Optional['Node']
-    tail : Optional['Node']
-    n : int
+    head: Optional["Node"]
+    tail: Optional["Node"]
+    n: int
     cur: int
 
     def __init__(self, k: int):
@@ -36,7 +38,6 @@ class MyCircularQueue:
         self.cur += 1
         return True
 
-
     def deQueue(self) -> bool:
         if self.cur == 0:
             return False
@@ -50,13 +51,11 @@ class MyCircularQueue:
 
         return True
 
-
     def Front(self) -> int:
         if self.cur == 0:
             return -1
 
         return self.head.val
-
 
     def Rear(self) -> int:
         if self.cur == 0:
@@ -64,10 +63,8 @@ class MyCircularQueue:
 
         return self.tail.val
 
-
     def isEmpty(self) -> bool:
         return self.cur == 0
-
 
     def isFull(self) -> bool:
         return self.cur == self.n

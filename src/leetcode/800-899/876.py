@@ -12,7 +12,6 @@ class ListNode:
 
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
         def f(left: ListNode, right: Optional[ListNode]) -> ListNode:
             return (
                 left

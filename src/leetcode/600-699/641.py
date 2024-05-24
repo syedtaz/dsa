@@ -18,7 +18,6 @@ class MyCircularDeque:
         self.cur += 1
         return True
 
-
     def insertLast(self, value: int) -> bool:
         if self.cur == self.k:
             return False
@@ -30,7 +29,6 @@ class MyCircularDeque:
 
         self.cur += 1
         return True
-
 
     def deleteFront(self) -> bool:
         if self.cur == 0:
@@ -45,7 +43,6 @@ class MyCircularDeque:
 
         return True
 
-
     def deleteLast(self) -> bool:
         if self.cur == 0:
             return False
@@ -54,7 +51,6 @@ class MyCircularDeque:
             _ = self.front.pop(0)
         else:
             _ = self.back.pop()
-
 
         self.cur -= 1
         return True
@@ -65,7 +61,6 @@ class MyCircularDeque:
 
         return self.front[-1]
 
-
     def getRear(self) -> int:
         if self.cur == 0:
             return -1
@@ -75,10 +70,8 @@ class MyCircularDeque:
 
         return self.back[-1]
 
-
     def isEmpty(self) -> bool:
         return self.cur == 0
-
 
     def isFull(self) -> bool:
         return self.cur == self.k

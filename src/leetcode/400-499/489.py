@@ -18,7 +18,6 @@ class Robot:
 
 class Solution:
     def cleanRoom(self, robot: Robot) -> None:
-
         seen: set[tuple[int, int]] = set()
         moves = {0: (-1, 0), 1: (0, 1), 2: (1, 0), 3: (0, -1)}
 

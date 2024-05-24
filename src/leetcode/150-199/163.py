@@ -1,8 +1,10 @@
 from typing import List
 
-class Solution:
-    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
 
+class Solution:
+    def findMissingRanges(
+        self, nums: List[int], lower: int, upper: int
+    ) -> List[List[int]]:
         def f(i: int, cur: int, acc: list[list[int]]) -> list[list[int]]:
             if cur >= upper:
                 return acc

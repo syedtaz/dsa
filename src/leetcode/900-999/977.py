@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-
         acc: list[int] = [0] * len(nums)
         left = 0
         right = len(nums) - 1

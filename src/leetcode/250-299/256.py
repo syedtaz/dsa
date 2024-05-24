@@ -4,7 +4,6 @@ from functools import cache
 
 class Solution:
     def minCost(self, costs: List[List[int]]) -> int:
-
         @cache
         def recurrence(i: int, prev: int) -> int:
             if i >= len(costs):

@@ -1,6 +1,5 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-
         def palindrome(i: int, j: int, deleted: bool) -> bool:
             if i == j:
                 return True

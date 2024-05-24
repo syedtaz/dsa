@@ -1,6 +1,7 @@
 from collections import defaultdict
 import heapq
 
+
 class Leaderboard:
     state: dict[int, int]
 
@@ -11,7 +12,7 @@ class Leaderboard:
         self.state[playerId] += score
 
     def top(self, K: int) -> int:
-        heap : list[int] = []
+        heap: list[int] = []
 
         for val in self.state.values():
             heapq.heappush(heap, val)

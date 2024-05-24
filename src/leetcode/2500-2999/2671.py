@@ -15,7 +15,7 @@ class FrequencyTracker:
         self.counts[current] += 1
 
         if current > 1:
-          self.counts[current - 1] -= 1
+            self.counts[current - 1] -= 1
 
     def deleteOne(self, number: int) -> None:
         if number not in self.state or self.state[number] == 0:

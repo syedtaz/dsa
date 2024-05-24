@@ -1,5 +1,6 @@
 from functools import reduce
 
+
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
         repr = [int(x) for x in str(n)]

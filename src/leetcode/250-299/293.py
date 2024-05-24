@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def generatePossibleNextMoves(self, currentState: str) -> List[str]:
-
         acc: list[str] = []
 
         for i, (left, right) in enumerate(zip(currentState, currentState[1:])):

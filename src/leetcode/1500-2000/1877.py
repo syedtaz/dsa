@@ -1,6 +1,7 @@
 from typing import List
 from sys import maxsize
 
+
 class Solution:
     def minPairSum(self, nums: List[int]) -> int:
         nums.sort()

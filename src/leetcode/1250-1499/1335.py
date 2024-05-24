@@ -1,19 +1,18 @@
 from typing import List
 
+
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
-
         A = jobDifficulty
 
         memo = [[-1 for _ in range(len(A))] for _ in range(d)]
-        memo[d-1] = A
+        memo[d - 1] = A
 
-        for i in range(d-1,-1,-1):
+        for i in range(d - 1, -1, -1):
             cur = memo[i]
             print(cur)
 
         return 0
-
 
         # @cache
         # def f(i: int, j: int) -> int:
@@ -36,5 +35,6 @@ class Solution:
 
         # return f(0, d)
 
+
 s = Solution()
-print(s.minDifficulty(jobDifficulty=[1,1,1], d = 3))
+print(s.minDifficulty(jobDifficulty=[1, 1, 1], d=3))

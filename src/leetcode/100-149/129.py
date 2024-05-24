@@ -17,7 +17,6 @@ class TreeNode:
 
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-
         if root is None:
             return 0
 

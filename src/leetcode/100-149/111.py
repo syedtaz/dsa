@@ -16,11 +16,12 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 from sys import maxsize
+
 
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
-
         if root is None:
             return 0
 

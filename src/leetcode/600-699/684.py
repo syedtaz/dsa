@@ -1,15 +1,15 @@
 from typing import List
 
+
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-
-        parents : dict[int, int] = {}
-        ranks : dict[int, int] = {}
+        parents: dict[int, int] = {}
+        ranks: dict[int, int] = {}
 
         def make_set(x: int) -> None:
             if x not in parents:
-              parents[x] = x
-              ranks[x] = 0
+                parents[x] = x
+                ranks[x] = 0
 
         def find(x: int) -> int:
             if x != parents[x]:
@@ -42,6 +42,7 @@ class Solution:
                 return edge
 
         return []
+
 
 # s = Solution()
 # print(s.findRedundantConnection([[1,2],[2,3],[3,4],[1,4],[1,5]]))

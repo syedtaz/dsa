@@ -1,7 +1,9 @@
-graph = [[1,0,1],[1,1,0],[0,1,1]]
+graph = [[1, 0, 1], [1, 1, 0], [0, 1, 1]]
+
 
 def knows(a: int, b: int) -> bool:
     return graph[a][b] == 1
+
 
 class Solution:
     def findCelebrity(self, n: int) -> int:

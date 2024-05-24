@@ -19,10 +19,6 @@ class TreeNode:
 
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
-
-
-
         def traverse(node: Optional[TreeNode], acc: TreeNode) -> None:
             if node is None:
                 return None
-

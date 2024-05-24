@@ -12,9 +12,7 @@ class Solution:
             return i
 
         def two_sum(i: int, j: int, target: int) -> None:
-
             while i < j:
-
                 s = nums[i] + nums[j]
                 diff = s - target
                 if diff > 0:

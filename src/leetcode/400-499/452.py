@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-
         points.sort()
         i = 0
         acc = 0

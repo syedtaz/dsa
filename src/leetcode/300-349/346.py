@@ -1,16 +1,15 @@
 from collections import deque
 
+
 class MovingAverage:
     queue: deque[int]
     size: int
     total: int
 
-
     def __init__(self, size: int) -> None:
         self.queue = deque([])
         self.size = size
         self.total = 0
-
 
     def next(self, val: int) -> float:
         if len(self.queue) == self.size:

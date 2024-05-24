@@ -1,5 +1,6 @@
 from typing import Optional, List
 
+
 class TreeNode:
     val: int
     left: Optional["TreeNode"]
@@ -18,7 +19,6 @@ class TreeNode:
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-
         def fold(node: Optional[TreeNode], acc: list[int]) -> list[int]:
             if node is None:
                 return acc
@@ -27,4 +27,4 @@ class Solution:
 
         results = fold(root, [])
         idx = results.index(target.val)
-        return results[max(idx-k,0):min(idx+k+1, len(results))]
+        return results[max(idx - k, 0) : min(idx + k + 1, len(results))]

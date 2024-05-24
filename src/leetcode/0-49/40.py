@@ -4,7 +4,6 @@ from functools import cache
 
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-
         def modify(x: int, idx: int) -> int:
             return x | (1 << idx)
 

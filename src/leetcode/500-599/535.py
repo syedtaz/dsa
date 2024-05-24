@@ -1,5 +1,6 @@
 from base64 import b64encode, b64decode
 
+
 class Codec:
     def encode(self, longUrl: str) -> str:
         result = longUrl.encode("utf-8")

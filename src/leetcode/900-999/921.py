@@ -5,7 +5,7 @@ class Solution:
         while True:
             if i >= len(s):
                 return lbraces + count
-            if s[i] == '(':
+            if s[i] == "(":
                 i, lbraces = i + 1, lbraces + 1
                 continue
             if lbraces > 0:

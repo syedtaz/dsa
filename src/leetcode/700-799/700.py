@@ -1,8 +1,8 @@
 from nodedef import *
 
+
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-
         def search(node: Optional[TreeNode]) -> Optional[TreeNode]:
             if node is None:
                 return None

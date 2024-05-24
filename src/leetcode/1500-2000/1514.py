@@ -14,9 +14,7 @@ class Solution:
         start_node: int,
         end_node: int,
     ) -> float:
-
         def construct(edges: list[list[int]], weights: list[float]) -> graph_t:
-
             graph: graph_t = defaultdict(list)
 
             for [a, b], w in zip(edges, weights):
@@ -26,7 +24,6 @@ class Solution:
             return graph
 
         def dijkstra(source: int, graph: graph_t) -> list[float]:
-
             # Init SSSP
             dist: list[float] = [0.0 for _ in range(n)]
             dist[source] = 1

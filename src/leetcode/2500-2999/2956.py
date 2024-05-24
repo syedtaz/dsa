@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def findIntersectionValues(self, nums1: List[int], nums2: List[int]) -> List[int]:
         c1, c2 = set(nums1), set(nums2)

@@ -1,6 +1,5 @@
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-
         def f(i: int, j: int, k: int) -> bool:
             print(f"{i} and {j} and {k}")
             if (i >= len(s1) or j >= len(s2)) and k < len(s3):

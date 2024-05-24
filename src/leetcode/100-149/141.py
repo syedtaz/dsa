@@ -9,7 +9,6 @@ class ListNode:
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-
         if head is None:
             return False
 

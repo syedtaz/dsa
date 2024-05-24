@@ -1,6 +1,5 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-
         def f(x: int) -> int:
             acc, k = 0, x
             while k > 0:

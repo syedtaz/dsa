@@ -4,7 +4,6 @@ from collections import deque
 
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-
         if root is None:
             return 0
 

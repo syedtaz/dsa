@@ -1,6 +1,5 @@
 class Solution:
     def knightDialer(self, n: int) -> int:
-
         def f(i: int) -> int:
             if i == 1:
                 return 10

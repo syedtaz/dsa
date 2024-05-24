@@ -17,6 +17,7 @@ class Solution:
 
         print(nums)
 
+
 s = Solution()
-s.wiggleSort(nums = [3,5,2,1,6,4])
+s.wiggleSort(nums=[3, 5, 2, 1, 6, 4])
 # 6 >= 2 <= 5 >= 4 <= 3 >= 1

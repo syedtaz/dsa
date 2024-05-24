@@ -14,7 +14,6 @@ class Status(Enum):
 
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
-
         def construct(words: list[str]) -> graph_t:
             queue: deque[tuple[int, list[str]]] = deque(
                 [(0, list(x)[::-1]) for x in words]
@@ -51,7 +50,6 @@ class Solution:
             order: list[str],
             status: dict[str, Status],
         ) -> int:
-
             status[v] = Status.Active
 
             for w in graph[v]:

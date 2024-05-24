@@ -5,9 +5,8 @@ class Solution:
     def checkArithmeticSubarrays(
         self, nums: List[int], l: List[int], r: List[int]
     ) -> List[bool]:
-
         def is_sequence(i: int, j: int) -> bool:
-            lst = sorted(nums[i:j + 1])
+            lst = sorted(nums[i : j + 1])
             if len(lst) <= 1:
                 return True
 

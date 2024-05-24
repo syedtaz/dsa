@@ -1,15 +1,14 @@
 class TicTacToe:
-    rows : list[int]
-    cols : list[int]
-    n : int
-    diag : int
-    adiag : int
+    rows: list[int]
+    cols: list[int]
+    n: int
+    diag: int
+    adiag: int
 
     def __init__(self, n: int) -> None:
         self.rows, self.cols = [0] * n, [0] * n
         self.n = n
         self.diag, self.adiag = 0, 0
-
 
     def move(self, row: int, col: int, player: int) -> int:
         v = 1 if player == 1 else -1

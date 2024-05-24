@@ -6,7 +6,7 @@ class Solution:
         if len(pref) <= 1:
             return pref
 
-        acc : list[int] = []
+        acc: list[int] = []
         prev = 0
         for i in range(len(pref)):
             acc.append(prev ^ pref[i])

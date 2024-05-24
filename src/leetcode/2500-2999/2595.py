@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def evenOddBit(self, n: int) -> List[int]:
         odds = 0

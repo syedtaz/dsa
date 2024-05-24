@@ -4,7 +4,6 @@ from functools import cache
 
 class Solution:
     def stoneGame(self, piles: List[int]) -> bool:
-
         @cache
         def f(i: int, j: int) -> int:
             if i >= j:

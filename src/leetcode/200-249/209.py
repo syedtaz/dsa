@@ -21,8 +21,8 @@ class Solution:
 
         v = max(nums)
         idx = nums.index(v)
-        return f(i = idx - 1, j = idx + 1, sum = v, length = 1)
+        return f(i=idx - 1, j=idx + 1, sum=v, length=1)
 
 
 s = Solution()
-print(s.minSubArrayLen(target = 213, nums = [12,28,83,4,25,26,25,2,25,25,25,12]))
+print(s.minSubArrayLen(target=213, nums=[12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12]))

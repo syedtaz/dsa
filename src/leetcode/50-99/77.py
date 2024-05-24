@@ -1,8 +1,9 @@
 from typing import List
 
+
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        A : list[list[int]] = []
+        A: list[list[int]] = []
 
         def f(idx: int, count: int, acc: list[int]) -> None:
             if count == 0:

@@ -9,7 +9,7 @@ class Solution:
         for word in words:
             acc &= Counter(word)
 
-        result : list[str] = []
+        result: list[str] = []
 
         for key, count in acc.items():
             result += [key] * count

@@ -1,8 +1,10 @@
 from nodedef import *
 
-class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
 
+class Solution:
+    def reverseBetween(
+        self, head: Optional[ListNode], left: int, right: int
+    ) -> Optional[ListNode]:
         def reverse_until(start: Optional[ListNode], j: int) -> None:
             prev = None
             cur = start

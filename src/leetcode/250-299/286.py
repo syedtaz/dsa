@@ -6,7 +6,6 @@ index = tuple[int, int]
 
 class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
-
         def find_gates(graph: list[list[int]]) -> list[index]:
             acc: list[index] = []
 

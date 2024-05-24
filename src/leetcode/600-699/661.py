@@ -4,7 +4,6 @@ from math import floor
 
 class Solution:
     def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
-
         m, n = len(img), len(img[0])
 
         def pick(i: int, j: int) -> int:

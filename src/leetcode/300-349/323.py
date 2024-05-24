@@ -1,5 +1,6 @@
 from typing import List
 
+
 class UnionFind:
     parents: list[int]
     ranks: list[int]
@@ -26,6 +27,7 @@ class UnionFind:
             self.parents[xbar] = ybar
             if self.ranks[xbar] == self.ranks[ybar]:
                 self.ranks[ybar] += 1
+
 
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:

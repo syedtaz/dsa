@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def trap(self, height: List[int]) -> int:
-
         acc = 0
         pref = [acc := max(acc, x) for x in height]
 

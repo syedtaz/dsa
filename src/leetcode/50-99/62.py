@@ -1,8 +1,8 @@
 from functools import cache
 
+
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-
         @cache
         def f(i: int, j: int) -> int:
             match (i == m, j == n):

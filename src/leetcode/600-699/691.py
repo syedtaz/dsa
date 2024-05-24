@@ -10,8 +10,8 @@ class Solution:
         }
 
         def f(x: int) -> tuple[int, dict[str, int]]:
-            sum_acc : int = sum(acc.values())
-            a : dict[str, int] = {}
+            sum_acc: int = sum(acc.values())
+            a: dict[str, int] = {}
 
             for k, v in counters[x].items():
                 if k in acc:
@@ -21,8 +21,9 @@ class Solution:
 
             return sum_acc, a
 
-
-        queue : list[tuple[int, dict[str, int]]] = [f(idx) for idx in range(len(stickers))]
+        queue: list[tuple[int, dict[str, int]]] = [
+            f(idx) for idx in range(len(stickers))
+        ]
         queue.sort(key=lambda x: x[0])
         count = 0
 
@@ -43,5 +44,6 @@ class Solution:
 
         return count if len(acc) == 0 else -1
 
+
 s = Solution()
-print(s.minStickers(stickers = ["notice","possible"], target = "basicbasic"))
+print(s.minStickers(stickers=["notice", "possible"], target="basicbasic"))

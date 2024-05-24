@@ -33,11 +33,11 @@ class UnionFind:
             if self.ranks[xbar] == self.ranks[ybar]:
                 self.ranks[ybar] += 1
 
+
 class Solution:
     def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
-
         uf = UnionFind(n=n)
-        counter : Counter[int] = Counter()
+        counter: Counter[int] = Counter()
 
         for edge in edges:
             u, v = edge[0], edge[1]
@@ -54,9 +54,3 @@ class Solution:
                 groups.discard(i)
 
         return len(groups)
-
-
-
-
-
-

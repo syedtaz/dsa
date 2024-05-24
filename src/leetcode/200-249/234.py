@@ -12,7 +12,6 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-
         def length(node: Optional[ListNode], acc: int) -> int:
             return acc if node is None else length(node.next, acc + 1)
 

@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-
         def sort(idx: int, low: int, high: int) -> None:
             if idx > high:
                 return

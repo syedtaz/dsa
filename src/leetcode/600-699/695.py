@@ -37,7 +37,6 @@ class DisjointSet:
 
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-
         def find_land(graph: list[list[int]]) -> list[index]:
             acc: list[index] = []
 
@@ -53,7 +52,7 @@ class Solution:
 
         for cur in lands:
             i, j = cur
-            for (di, dj) in diffs:
+            for di, dj in diffs:
                 neighbor = (i + di, j + dj)
                 if neighbor in disjointset.parents:
                     disjointset.union(cur, neighbor)

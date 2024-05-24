@@ -7,9 +7,8 @@ class Solution:
     def getTargetCopy(
         self, original: TreeNode, cloned: TreeNode, target: TreeNode
     ) -> TreeNode:
-
         def search(start: TreeNode, tgt: TreeNode) -> str:
-            queue : deque[tuple[str, TreeNode]] = deque([("", start)])
+            queue: deque[tuple[str, TreeNode]] = deque([("", start)])
 
             while len(queue) > 0:
                 path, node = queue.popleft()
@@ -30,9 +29,9 @@ class Solution:
 
         for ch in path:
             match ch:
-                case 'L':
+                case "L":
                     current = current.left
-                case 'R':
+                case "R":
                     current = current.right
                 case _:
                     assert False

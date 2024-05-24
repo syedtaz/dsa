@@ -2,6 +2,7 @@
 from typing import Optional, List
 from collections import deque
 
+
 class TreeNode:
     def __init__(
         self, val: int, left: Optional["TreeNode"], right: Optional["TreeNode"]
@@ -13,12 +14,11 @@ class TreeNode:
 
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-
         if root is None:
             return []
 
-        queue : deque[tuple[TreeNode, int]] = deque([(root, 0)])
-        acc : list[int] = []
+        queue: deque[tuple[TreeNode, int]] = deque([(root, 0)])
+        acc: list[int] = []
         cand_level, cand = 0, root
 
         while len(queue) > 0:
@@ -38,5 +38,3 @@ class Solution:
                 queue.append((node.right, level + 1))
 
         return acc
-
-

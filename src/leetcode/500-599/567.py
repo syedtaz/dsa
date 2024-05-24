@@ -1,6 +1,5 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-
         def count(s: str) -> list[int]:
             acc = [0] * 26
             for x in s:

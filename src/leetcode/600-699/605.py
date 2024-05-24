@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-
         def f(i: int, acc: int) -> bool:
             if acc == 0:
                 return True

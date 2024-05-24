@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
         total = sum(apple)

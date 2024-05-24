@@ -13,7 +13,6 @@ class ListNode:
 
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-
         # 1 -> 2 -> 3 -> 4 -> 5
         # 5 -> 1 -> 2 -> 3 -> 4
 
@@ -43,4 +42,3 @@ class Solution:
         right.next = head
 
         return nhead
-

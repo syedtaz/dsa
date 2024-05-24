@@ -10,7 +10,7 @@ class Solution:
             return ch, idx, count
 
         def convert(input: str) -> list[pair]:
-            pairs : list[pair] = []
+            pairs: list[pair] = []
             idx = 0
             while idx < len(s):
                 ch, next, count = counts(idx)
@@ -19,9 +19,9 @@ class Solution:
             return pairs
 
         def collapse(pairs: list[pair]) -> list[pair]:
-            ans : list[pair] = []
+            ans: list[pair] = []
             ch, count = pairs[0]
-            for (nch, ncount) in pairs[1:] + [("", 0)]:
+            for nch, ncount in pairs[1:] + [("", 0)]:
                 if ch == nch:
                     count += ncount
                 else:
@@ -31,15 +31,15 @@ class Solution:
             return ans
 
         def mapping(pairs: list[pair]) -> list[pair]:
-            ans : list[pair] = []
+            ans: list[pair] = []
             print(pairs)
             for ch, count in pairs:
                 if count < k:
                     ans.append((ch, count))
                 else:
-                  ncount = count - ((count // k) * k)
-                  if ncount > 0:
-                      ans.append((ch, ncount))
+                    ncount = count - ((count // k) * k)
+                    if ncount > 0:
+                        ans.append((ch, ncount))
             return collapse(ans)
 
         # def fixpoint(prev: str) -> str:
@@ -48,5 +48,6 @@ class Solution:
         print(mapping(convert(s)))
         return ""
 
+
 s = Solution()
-print(s.removeDuplicates(s="pbbcggttciiippooaais", k =2))
+print(s.removeDuplicates(s="pbbcggttciiippooaais", k=2))

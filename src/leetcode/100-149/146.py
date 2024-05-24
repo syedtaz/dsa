@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Node:
     key: int
     value: int
@@ -14,12 +15,13 @@ class Node:
     def __repr__(self) -> str:
         return f"{self.value}"
 
+
 class LRUCache:
     capacity: int
     size: int
     head: Optional["Node"]
     tail: Optional["Node"]
-    table : dict[int, Node]
+    table: dict[int, Node]
 
     def __init__(self, capacity: int) -> None:
         self.capacity = capacity
@@ -50,9 +52,9 @@ class LRUCache:
             self.tail = prev
 
         if node.next is not None:
-          node.next.prev = node.prev
+            node.next.prev = node.prev
         if node.prev is not None:
-          node.prev.next = node.next
+            node.prev.next = node.next
         self.mut_head(node)
         return
 
@@ -85,7 +87,7 @@ class LRUCache:
             assert tail is not None
             self.size -= 1
 
-            if tail.prev is None: # capacity is 1
+            if tail.prev is None:  # capacity is 1
                 assert self.head == tail
                 self.table.pop(tail.key)
                 self.table[node.key] = node

@@ -1,8 +1,7 @@
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
-
         def strip_zeros(number: str) -> str:
-            while len(number) > 1 and number[0] == '0':
+            while len(number) > 1 and number[0] == "0":
                 number = number[1:]
             return number
 

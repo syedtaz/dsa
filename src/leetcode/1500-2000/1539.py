@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
-
         def search(i: int, j: int) -> int:
             if i > j:
                 return i + k

@@ -49,8 +49,8 @@ class Solution:
                 A = s(n, a)
                 B = s(n, b)
                 if A not in amount or B not in amount:
-                  time.add(f"{n},{str(b)}")
-                  time.add(f"{n},{str(a)}")
+                    time.add(f"{n},{str(b)}")
+                    time.add(f"{n},{str(a)}")
 
         return list(time.union(amount))
 

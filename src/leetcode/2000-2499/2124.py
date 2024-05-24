@@ -3,10 +3,10 @@ class Solution:
         b = False
 
         for char in s:
-            if char == 'a' and b:
+            if char == "a" and b:
                 return False
 
-            if char == 'b':
+            if char == "b":
                 b = True
 
         return True

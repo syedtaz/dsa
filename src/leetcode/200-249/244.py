@@ -3,6 +3,7 @@ from functools import cache
 from collections import defaultdict
 from sys import maxsize
 
+
 class WordDistance:
     map: dict[str, list[int]]
 

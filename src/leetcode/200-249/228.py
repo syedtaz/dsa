@@ -5,7 +5,9 @@ class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         def f(i: int, j: int, acc: list[tuple[int, int]]) -> list[str]:
             if i >= len(nums):
-                return [f"{nums[a]}->{nums[b]}" if a != b else f"{nums[a]}" for a, b in acc]
+                return [
+                    f"{nums[a]}->{nums[b]}" if a != b else f"{nums[a]}" for a, b in acc
+                ]
 
             if j >= len(nums):
                 return f(j, j + 1, acc + [(i, j - 1)])

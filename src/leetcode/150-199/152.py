@@ -1,9 +1,9 @@
 from typing import List
 from sys import maxsize
 
+
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-
         m = -maxsize
         pref = 1
         for x in nums:

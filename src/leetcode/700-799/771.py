@@ -1,6 +1,6 @@
 class Solution:
     def numJewelsInStones(self, jewels: str, stones: str) -> int:
-        hashset : set[str] = set(list(jewels))
+        hashset: set[str] = set(list(jewels))
         count = 0
 
         for k in stones:

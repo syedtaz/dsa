@@ -41,8 +41,8 @@ def step_binop(e: Expr) -> int:
         case Op.Div:
             return int(e.left / e.right)
 
-def step(e: Expr) -> expr:
 
+def step(e: Expr) -> expr:
     if isinstance(e.left, int) and isinstance(e.right, int):
         return step_binop(e)
 
@@ -52,6 +52,7 @@ def step(e: Expr) -> expr:
 
     assert isinstance(e.left, Expr)
     return Expr(operator=e.operator, left=step(e.left), right=e.right)
+
 
 def compute(e: expr, plus: bool) -> int:
     if isinstance(e, int):

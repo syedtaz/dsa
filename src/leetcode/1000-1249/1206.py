@@ -25,7 +25,6 @@ class Skiplist:
         current = self.head
 
         for i in range(self.level):
-
             while True:
                 if current.forward[i] is None or current.forward[i].value > target:
                     break
@@ -53,7 +52,7 @@ class Skiplist:
         self.level = level
 
         for i in range(len(temp)):
-          self.head.forward[i] = temp[i]
+            self.head.forward[i] = temp[i]
 
     def add(self, num: int) -> None:
         nlevel = self.random_level()
@@ -91,6 +90,7 @@ class Skiplist:
                 cur = cur.forward[i]
 
         return False
+
 
 s = Skiplist()
 s.add(1)

@@ -9,6 +9,3 @@ class Solution:
                     nums[i], nums[hashtbl[j]] = nums[hashtbl[j]], nums[i]
                     return int("".join([str(x) for x in nums]))
         return num
-
-
-

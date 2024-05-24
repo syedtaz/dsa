@@ -6,7 +6,6 @@ index = tuple[int, int]
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-
         def initialize(graph: list[list[int]]) -> tuple[int, deque[tuple[int, index]]]:
             queue: list[tuple[int, index]] = []
             count = 0

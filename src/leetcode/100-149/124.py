@@ -1,6 +1,7 @@
 from typing import Optional
 from math import inf
 
+
 class TreeNode:
     val: int
     left: Optional["TreeNode"]
@@ -19,7 +20,6 @@ class TreeNode:
 
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-
         acc = -inf
 
         def traverse(node: Optional[TreeNode]) -> int:

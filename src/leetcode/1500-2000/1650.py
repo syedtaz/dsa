@@ -8,11 +8,11 @@ class Node:
         self.right = None
         self.parent = None
 
-class Solution:
-    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
 
+class Solution:
+    def lowestCommonAncestor(self, p: "Node", q: "Node") -> "Node":
         start = q.parent
-        parents : set['Node'] = set([q])
+        parents: set["Node"] = set([q])
         while start is not None:
             if start == p:
                 return p
@@ -28,5 +28,3 @@ class Solution:
             start = start.parent
 
         return q
-
-

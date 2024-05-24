@@ -4,7 +4,6 @@ def isBadVersion(version: int) -> bool:
 
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-
         def binary_search(i: int, j: int) -> int:
             if i > j:
                 return i

@@ -3,7 +3,6 @@ from functools import cache
 
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-
         @cache
         def f(i: int, j: int) -> int:
             if i == 0 or j == 0:

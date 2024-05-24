@@ -16,7 +16,6 @@ class TreeNode:
 
 class Solution:
     def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
-
         def depth(node: Optional["TreeNode"], acc: int) -> int:
             return (
                 acc
@@ -31,7 +30,9 @@ class Solution:
             if height == 0:
                 return acc + node.val
 
-            return traverse(node.left, height - 1, acc) + traverse(node.right, height - 1, acc)
+            return traverse(node.left, height - 1, acc) + traverse(
+                node.right, height - 1, acc
+            )
 
         d = depth(root, 0)
         return traverse(root, d - 1, 0)

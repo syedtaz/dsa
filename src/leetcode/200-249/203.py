@@ -3,7 +3,6 @@ from nodedef import *
 
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
-
         def remove(start: Optional[ListNode]) -> Optional[ListNode]:
             node, acc = start, None
             while True:

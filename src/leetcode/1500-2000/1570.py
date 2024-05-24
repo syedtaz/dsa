@@ -1,5 +1,6 @@
 from typing import List
 
+
 class SparseVector:
     values: dict[int, int]
 
@@ -7,5 +8,7 @@ class SparseVector:
         self.values = {idx: v for idx, v in enumerate(nums) if v != 0}
 
     # Return the dotProduct of two sparse vectors
-    def dotProduct(self, vec: 'SparseVector') -> int:
-        return sum([v * self.values[k] for k, v in vec.values.items() if k in self.values])
+    def dotProduct(self, vec: "SparseVector") -> int:
+        return sum(
+            [v * self.values[k] for k, v in vec.values.items() if k in self.values]
+        )

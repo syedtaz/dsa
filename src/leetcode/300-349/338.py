@@ -1,9 +1,9 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     def countBits(self, n: int) -> List[int]:
-
         @cache
         def recurrence(i: int) -> int:
             if i <= 1:

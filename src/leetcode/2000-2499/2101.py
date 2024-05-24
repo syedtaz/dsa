@@ -3,9 +3,9 @@ from dataclasses import dataclass
 from math import sqrt
 from collections import deque, Counter
 
+
 class Solution:
     def maximumDetonation(self, bombs: List[List[int]]) -> int:
-
         @dataclass(frozen=True)
         class Point:
             id: int
@@ -33,30 +33,30 @@ class Solution:
                 return f"Incoming -> {self.incoming} | Outgoing -> {self.outgoing}"
 
         def construct(points: list[Point]) -> dict[Point, Edges]:
-          g : dict[Point, Edges] = {}
+            g: dict[Point, Edges] = {}
 
-          for a in points:
-              for b in points:
-                  if a == b:
-                      continue
-                  if a not in g:
-                      g[a] = Edges()
-                  if b not in g:
-                      g[b] = Edges()
+            for a in points:
+                for b in points:
+                    if a == b:
+                        continue
+                    if a not in g:
+                        g[a] = Edges()
+                    if b not in g:
+                        g[b] = Edges()
 
-                  if within(a, b):
-                      g[a].outgoing.append(b)
-                      g[b].incoming.append(a)
+                    if within(a, b):
+                        g[a].outgoing.append(b)
+                        g[b].incoming.append(a)
 
-          return g
+            return g
 
         points = [Point(id=idx, x=p[0], y=p[1], r=p[2]) for idx, p in enumerate(bombs)]
         graph = construct(points=points)
         print(graph)
 
-        seen : set[Point] = set()
-        roots : dict[Point, Point] = {}
-        stack : deque[Point] = deque([])
+        seen: set[Point] = set()
+        roots: dict[Point, Point] = {}
+        stack: deque[Point] = deque([])
 
         def pprdfs(v: Point):
             seen.add(v)
@@ -78,7 +78,7 @@ class Solution:
         while len(stack) > 0:
             v = stack.popleft()
             if v not in roots:
-              labeldfs(v, v)
+                labeldfs(v, v)
 
         print(roots)
         _, c = Counter(roots.values()).most_common(1)[0]

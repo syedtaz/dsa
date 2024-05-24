@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-
         f = [[1], [1, 1]]
 
         for i in range(2, numRows):

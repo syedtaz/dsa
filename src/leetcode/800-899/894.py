@@ -17,9 +17,9 @@ class TreeNode:
     def __repr__(self) -> str:
         return f"({self.val}, ({self.left.__repr__()}), ({self.right.__repr__()}))"
 
+
 class Solution:
     def allPossibleFBT(self, n: int) -> List[Optional[TreeNode]]:
-
         @cache
         def f(k: int) -> list[Optional[TreeNode]]:
             if k % 2 == 0:
@@ -28,7 +28,7 @@ class Solution:
             if k == 1:
                 return [TreeNode(0, None, None)]
 
-            acc : list[Optional[TreeNode]] = []
+            acc: list[Optional[TreeNode]] = []
             for i in range(1, k):
                 acc += f(i)
                 acc += f(k - i)
@@ -36,6 +36,7 @@ class Solution:
             return acc
 
         return f(n)
+
 
 s = Solution()
 x = s.allPossibleFBT(7)

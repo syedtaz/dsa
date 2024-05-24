@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 class Solution:
     def buddyStrings(self, s: str, goal: str) -> bool:
         if len(s) != len(goal):

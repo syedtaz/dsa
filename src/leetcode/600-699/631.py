@@ -3,10 +3,12 @@ from typing import List
 
 index = tuple[str, int]
 
+
 def nodify(s: str) -> index:
     letters = [x for x in s if x.isalpha()]
     nums = [x for x in s if x.isnumeric()]
     return "".join(letters), int("".join(nums))
+
 
 class DependencyGraph:
     graph: dict[index, set[index]]
@@ -25,6 +27,7 @@ class DependencyGraph:
         for _, v in self.graph.items():
             v.discard(x)
         return None
+
 
 class Excel:
     table: dict[index, int]
@@ -60,6 +63,3 @@ class Excel:
             self.summations[node] = [target]
             self.depgraph.add(source=target, value=node)
             return self._update(node)
-
-
-

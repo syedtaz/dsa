@@ -1,8 +1,8 @@
 from functools import cache
 
+
 class Solution:
     def numTrees(self, n: int) -> int:
-
         @cache
         def g(i: int) -> int:
             if i <= 1:

@@ -2,9 +2,9 @@ from nodedef import *
 
 from typing import Generator
 
+
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-
         def inorder(start: Optional[TreeNode]) -> Generator[int, None, None]:
             cur = start
             stack: list[TreeNode] = []
@@ -31,5 +31,3 @@ class Solution:
             seen.add(num)
 
         return False
-
-

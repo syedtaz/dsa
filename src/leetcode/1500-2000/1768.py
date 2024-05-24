@@ -1,6 +1,6 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        acc : list[str] = []
+        acc: list[str] = []
 
         shorter = word1 if len(word1) <= len(word2) else word2
         longer = word2 if shorter == word1 else word1

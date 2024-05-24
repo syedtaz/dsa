@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
-
         def f(i: int, j: int) -> int:
             if i == j:
                 return i

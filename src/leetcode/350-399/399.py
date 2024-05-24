@@ -68,7 +68,9 @@ class Solution:
 
         # Answer queries.
 
-        def dfs(node: str, seen: set[str], mult: float) -> Generator[tuple[str, float], None, None]:
+        def dfs(
+            node: str, seen: set[str], mult: float
+        ) -> Generator[tuple[str, float], None, None]:
             if node in seen:
                 return
 
@@ -78,12 +80,11 @@ class Solution:
                 yield from dfs(edge, seen, mult * val)
 
         def search(source: str, target: str) -> float:
-            seen : set[str] = set()
+            seen: set[str] = set()
             for val, mult in dfs(node=source, seen=seen, mult=1.0):
                 if val == target:
                     return mult
             raise Exception
-
 
         def answer(query: List[str]) -> float:
             assert len(query) == 2
@@ -92,7 +93,11 @@ class Solution:
             right = query[1]
 
             # Not in same component
-            if (left not in parents) or (right not in parents) or (parents[left] != parents[right]):
+            if (
+                (left not in parents)
+                or (right not in parents)
+                or (parents[left] != parents[right])
+            ):
                 return -1.0
 
             return search(left, right)

@@ -1,11 +1,11 @@
 from typing import List
 from collections import defaultdict, deque
 
+
 class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-
         def construct_graph(edges: list[list[int]]) -> dict[int, list[int]]:
-            graph : dict[int, list[int]] = defaultdict(list)
+            graph: dict[int, list[int]] = defaultdict(list)
 
             for edge in edges:
                 u, v = edge[0], edge[1]
@@ -15,7 +15,6 @@ class Solution:
             return graph
 
         def two_color(graph: dict[int, list[int]]) -> dict[int, bool]:
-
             not_seen = set(graph.keys())
             queue: deque[tuple[bool, int]] = deque([(True, not_seen.pop())])
             coloring: dict[int, bool] = {}
@@ -34,8 +33,9 @@ class Solution:
 
             return coloring
 
-        def check_two_coloring(graph: dict[int, list[int]], coloring: dict[int, bool]) -> bool:
-
+        def check_two_coloring(
+            graph: dict[int, list[int]], coloring: dict[int, bool]
+        ) -> bool:
             for u, vs in graph.items():
                 color = coloring[u]
 
@@ -51,7 +51,3 @@ class Solution:
 
         coloring = two_color(graph)
         return check_two_coloring(graph, coloring)
-
-
-
-

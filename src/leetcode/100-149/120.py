@@ -1,9 +1,9 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-
         @cache
         def f(i: int, j: int) -> int:
             if j >= len(triangle):

@@ -19,7 +19,6 @@ class TreeNode:
 
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-
         def fold(node: Optional[TreeNode], acc: str) -> str:
             return (
                 "#" + acc

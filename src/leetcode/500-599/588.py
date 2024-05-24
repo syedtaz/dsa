@@ -2,9 +2,11 @@ from sortedcontainers import SortedDict
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class File:
     contents: str
+
 
 @dataclass
 class Directory:
@@ -27,7 +29,6 @@ class FileSystem:
 
         return current
 
-
     def ls(self, path: str) -> List[str]:
         stack = [x for x in path.split("/") if x != ""]
         node = self.__traverse__(stack)
@@ -37,12 +38,10 @@ class FileSystem:
 
         return [stack.pop()]
 
-
     def mkdir(self, path: str) -> None:
         stack = [x for x in path.split("/") if x != ""]
         print(stack)
         _ = self.__traverse__(stack, create=True)
-
 
     def addContentToFile(self, filePath: str, content: str) -> None:
         stack = [x for x in filePath.split("/") if x != ""]
@@ -55,7 +54,6 @@ class FileSystem:
 
         dir.files[filename].contents += content
         return None
-
 
     def readContentFromFile(self, filePath: str) -> str:
         stack = [x for x in filePath.split("/") if x != ""]

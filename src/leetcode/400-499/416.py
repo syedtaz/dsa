@@ -4,7 +4,6 @@ from functools import cache
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-
         def set(x: int, i: int) -> int:
             return x | (1 << i)
 

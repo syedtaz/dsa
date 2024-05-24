@@ -1,18 +1,18 @@
 # Definition for a Node.
 from typing import Optional
 
+
 class Node:
     val: int
-    next: Optional['Node']
+    next: Optional["Node"]
 
-    def __init__(self, val: int=None, next=None) -> None: # type: ignore
+    def __init__(self, val: int = None, next=None) -> None:  # type: ignore
         self.val = val
         self.next = next
 
 
 class Solution:
-    def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':
-
+    def insert(self, head: "Optional[Node]", insertVal: int) -> "Node":
         if head is None:
             v = Node(val=insertVal, next=None)
             v.next = v
@@ -25,7 +25,6 @@ class Solution:
             head.next = Node(val=insertVal, next=head)
             return head
 
-
         def f(i: Node, j: Node) -> Node:
             print(f"{i.val} and {j.val}")
             if i.val > j.val and (insertVal >= i.val or insertVal <= j.val):
@@ -33,7 +32,7 @@ class Solution:
                 return head
 
             if i.val <= insertVal <= j.val:
-                i.next =  Node(val=insertVal, next=j)
+                i.next = Node(val=insertVal, next=j)
                 return head
 
             assert i.next is not None and j.next is not None

@@ -1,6 +1,7 @@
 from typing import List
 from math import inf
 
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         current, cur_max = 0, -inf

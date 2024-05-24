@@ -16,7 +16,6 @@ class Node:
 
 class Solution:
     def treeToDoublyList(self, root: "Optional[Node]") -> "Optional[Node]":
-
         def fold(node: "Optional[Node]", acc: list["Node"]) -> list["Node"]:
             if node is None:
                 return acc
@@ -26,19 +25,10 @@ class Solution:
         result = fold(root, [])
         head, tail = result[0], result[-1]
 
-        for (l, r) in zip(result, result[1:]):
+        for l, r in zip(result, result[1:]):
             l.right = r
             r.left = l
 
         head.left = tail
         tail.right = head
         return head
-
-
-
-
-
-
-
-
-

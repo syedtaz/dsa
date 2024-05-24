@@ -4,7 +4,6 @@ from collections import deque, defaultdict
 
 class Solution:
     def treeDiameter(self, edges: List[List[int]]) -> int:
-
         if len(edges) == 0:
             return 0
 
@@ -20,8 +19,8 @@ class Solution:
             return g
 
         def bfs(source: int, graph: dict[int, List[int]]) -> tuple[int, int]:
-            queue : deque[tuple[int, int]] = deque([(0, source)])
-            seen : set[int] = set()
+            queue: deque[tuple[int, int]] = deque([(0, source)])
+            seen: set[int] = set()
             maxdist = 0
             maxv = source
 
@@ -38,10 +37,11 @@ class Solution:
             return maxv, maxdist
 
         graph = construct(edges=edges)
-        first, _ = bfs(source = 0, graph = graph)
-        _, sdistance = bfs(source = first, graph = graph)
+        first, _ = bfs(source=0, graph=graph)
+        _, sdistance = bfs(source=first, graph=graph)
         return sdistance
 
+
 s = Solution()
-print(s.treeDiameter([[0,1],[0,2]]))
-print(s.treeDiameter([[0,1],[1,2],[2,3],[1,4],[4,5]]))
+print(s.treeDiameter([[0, 1], [0, 2]]))
+print(s.treeDiameter([[0, 1], [1, 2], [2, 3], [1, 4], [4, 5]]))

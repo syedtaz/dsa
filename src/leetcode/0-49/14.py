@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-
         def search(i: int, acc: str) -> str:
             if i >= len(strs):
                 return acc
@@ -19,18 +18,18 @@ class Solution:
                 return acc
 
             mid = l + (h - l) // 2
-            sub = base[:mid + 1]
+            sub = base[: mid + 1]
 
             for word in strs:
-                if word[0:mid + 1] != sub:
+                if word[0 : mid + 1] != sub:
                     return f(l, mid - 1, acc, base)
 
             return f(mid + 1, h, sub, base)
 
-
         shortest = search(1, strs[0])
 
         return f(0, len(shortest) - 1, "", shortest)
+
 
 # s = Solution()
 # s.longestCommonPrefix(["cir","car"])

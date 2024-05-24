@@ -10,7 +10,7 @@ class Solution:
                     return ["a", "b", "c"]
                 case "3":
                     return ["d", "e", "f"]
-                case '4':
+                case "4":
                     return ["g", "h", "i"]
                 case "5":
                     return ["j", "k", "l"]
@@ -36,6 +36,7 @@ class Solution:
             return [i + j for i in hd for j in tl] if len(tl) > 0 else hd
 
         return f(digits)
+
 
 # s = Solution()
 # print(s.letterCombinations(""))

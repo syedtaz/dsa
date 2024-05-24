@@ -16,7 +16,7 @@ class Node:
 
 
 class MRUQueue:
-    n : int
+    n: int
     pointers: dict[int, Node]
 
     def __init__(self, n: int) -> None:
@@ -61,7 +61,7 @@ class MRUQueue:
         node.prev = self.pointers[self.n]
         self.pointers[self.n].next = node
 
-        for i in self.pointers.keys(): # always???
+        for i in self.pointers.keys():  # always???
             self.pointers[i] = self.pointers[i].prev
 
         node.prev = None

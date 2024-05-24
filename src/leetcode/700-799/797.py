@@ -11,7 +11,7 @@ class Solution:
             if source == sink:
                 return [[sink]]
 
-            paths : list[list[int]] = []
+            paths: list[list[int]] = []
             for edge in g[source]:
                 for path in f(edge, sink):
                     if len(path) > 0 and path[-1] == sink:
@@ -20,6 +20,7 @@ class Solution:
             return paths
 
         return f(0, len(graph) - 1)
+
 
 # s = Solution()
 # print(s.allPathsSourceTarget(graph=[[4,3,1],[3,2,4],[3],[4],[]]))

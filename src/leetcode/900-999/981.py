@@ -34,6 +34,7 @@ class TimeMap:
         idx = binary_search(0, len(lst) - 1, lst, timestamp)
         return "" if self.map[key][idx][1] > timestamp else self.map[key][idx][0]
 
+
 # M = TimeMap()
 # M.set("a", "bar", 1)
 # M.set("x", "b", 3)

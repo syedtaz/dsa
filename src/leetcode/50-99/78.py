@@ -1,9 +1,9 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-
         @cache
         def f(i: int) -> list[list[int]]:
             return (
@@ -11,6 +11,7 @@ class Solution:
             )
 
         return f(0)
+
 
 # s = Solution()
 # print(s.subsets(nums=[0]))

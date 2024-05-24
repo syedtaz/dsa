@@ -3,16 +3,16 @@ from nodedef import *
 from typing import List
 from collections import deque
 
+
 class Solution:
     def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
-
         if root is None:
             return []
 
-        queue : deque[tuple[int, TreeNode]] = deque([(0, root)])
+        queue: deque[tuple[int, TreeNode]] = deque([(0, root)])
         acc: list[list[int]] = []
         current_level = 0
-        current : list[int] = []
+        current: list[int] = []
 
         while len(queue) > 0:
             level, node = queue.popleft()

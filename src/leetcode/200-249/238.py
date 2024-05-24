@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-
         acc = 1
         prefixes = [(acc := acc * x) for x in nums]
 

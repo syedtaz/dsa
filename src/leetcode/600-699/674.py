@@ -1,8 +1,8 @@
 from typing import List
 
+
 class Solution:
     def findLengthOfLCIS(self, nums: List[int]) -> int:
-
         i, acc, cur = 1, 1, 1
 
         while True:

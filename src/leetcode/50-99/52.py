@@ -1,6 +1,5 @@
 class Solution:
     def totalNQueens(self, n: int) -> int:
-
         def f(state: list[int], idx: int) -> int:
             if idx >= n:
                 return 1
@@ -9,12 +8,16 @@ class Solution:
             for j in range(n):
                 legal = True
                 for i in range(idx):
-                    if state[i] == j or state[i] == j + idx - i or state[i] == j - idx + i:
+                    if (
+                        state[i] == j
+                        or state[i] == j + idx - i
+                        or state[i] == j - idx + i
+                    ):
                         legal = False
 
                 if legal:
-                  next = state + [j]
-                  acc += f(next, idx + 1)
+                    next = state + [j]
+                    acc += f(next, idx + 1)
 
             return acc
 

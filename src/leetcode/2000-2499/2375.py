@@ -4,7 +4,7 @@ class Solution:
         low, high = 1, len(pattern) + 1
 
         for x in pattern:
-            if x == 'I':
+            if x == "I":
                 acc += str(low)
                 low += 1
             else:

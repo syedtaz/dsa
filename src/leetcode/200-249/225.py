@@ -17,10 +17,8 @@ class MyStack:
     def pop(self) -> int:
         return self.state.popleft()
 
-
     def top(self) -> int:
         return self.state[0]
 
     def empty(self) -> bool:
         return len(self.state) == 0
-

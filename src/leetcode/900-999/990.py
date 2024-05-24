@@ -31,7 +31,6 @@ class UnionFind:
 
 class Solution:
     def equationsPossible(self, equations: List[str]) -> bool:
-
         def parse(x: str) -> tuple[str, str, bool]:
             return x[0], x[-1], x[1] == "="
 

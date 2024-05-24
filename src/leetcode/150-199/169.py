@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         ch, count = nums[0], 1

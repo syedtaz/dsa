@@ -36,7 +36,6 @@ class Trie:
 
 class Solution:
     def longestWord(self, words: List[str]) -> str:
-
         trie = Trie()
         words.sort()
 

@@ -1,8 +1,9 @@
 import heapq
 
+
 class SeatManager:
     idx: int
-    pqueue : list[int]
+    pqueue: list[int]
 
     def __init__(self, n: int):
         self.idx = 1

@@ -1,6 +1,7 @@
 from functools import cache
 from typing import List
 
+
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
         m, n = len(matrix), len(matrix[0])

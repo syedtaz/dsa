@@ -1,8 +1,8 @@
 from functools import cache
 
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-
         @cache
         def f(i: int, j: int) -> str:
             if i > j:
@@ -18,6 +18,7 @@ class Solution:
                 m = max(m, f(i, j), key=len)
 
         return m
+
 
 s = Solution()
 print(s.longestPalindrome("aacabdkacaa"))

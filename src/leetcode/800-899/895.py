@@ -1,10 +1,10 @@
 from collections import defaultdict
 
+
 class FreqStack:
     counts: dict[int, int]
     levels: dict[int, list[int]]
-    max_level : int
-
+    max_level: int
 
     def __init__(self):
         self.counts = defaultdict(int)

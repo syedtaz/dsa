@@ -13,7 +13,6 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-
         def length(node: Optional[ListNode]) -> int:
             acc = 0
 

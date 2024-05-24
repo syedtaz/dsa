@@ -12,7 +12,6 @@ class ListNode:
 
 class Solution:
     def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
         dummy = ListNode(0, head)
         d = {0: dummy}
         prefix_sum = 0

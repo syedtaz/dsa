@@ -6,7 +6,6 @@ class Solution:
     def findAllPeople(
         self, n: int, meetings: List[List[int]], firstPerson: int
     ) -> List[int]:
-
         meetings.sort(key=lambda lst: lst[2])
         keepers: set[int] = {0, firstPerson}
 

@@ -1,8 +1,8 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        map : dict[str, str] = {')': '(', '}': '{', ']': '['}
-        opening: set[str] = {'(', '[', '{'}
-        stack : list[str] = []
+        map: dict[str, str] = {")": "(", "}": "{", "]": "["}
+        opening: set[str] = {"(", "[", "{"}
+        stack: list[str] = []
 
         for ch in s:
             if ch in opening:
@@ -15,7 +15,3 @@ class Solution:
             _ = stack.pop()
 
         return len(stack) == 0
-
-
-
-

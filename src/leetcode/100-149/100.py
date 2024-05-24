@@ -19,8 +19,7 @@ class TreeNode:
 
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-
-        def fold(a: Optional[TreeNode], b : Optional[TreeNode]) -> bool:
+        def fold(a: Optional[TreeNode], b: Optional[TreeNode]) -> bool:
             if a is None and b is None:
                 return True
 

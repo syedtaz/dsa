@@ -1,5 +1,6 @@
 from typing import List
 
+
 class UnionFind:
     parents: list[int]
     ranks: list[int]
@@ -27,9 +28,11 @@ class UnionFind:
             if self.ranks[xbar] == self.ranks[ybar]:
                 self.ranks[ybar] += 1
 
-class Solution:
-    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
 
+class Solution:
+    def validPath(
+        self, n: int, edges: List[List[int]], source: int, destination: int
+    ) -> bool:
         uf = UnionFind(n)
 
         for edge in edges:

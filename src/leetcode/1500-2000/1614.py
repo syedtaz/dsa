@@ -4,10 +4,10 @@ class Solution:
         stack = 0
 
         for char in s:
-            if char == '(':
+            if char == "(":
                 stack += 1
                 acc = max(stack, acc)
-            elif char == ')':
+            elif char == ")":
                 stack -= 1
 
         return acc

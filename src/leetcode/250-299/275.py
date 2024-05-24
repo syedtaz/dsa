@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
-
         lo, hi = 0, len(citations) - 1
 
         while lo <= hi:

@@ -30,7 +30,7 @@ class FileSystem:
         if files[-1] in current.next:
             return False
 
-        current.next[files[-1]] = Fd(value=value, next = {})
+        current.next[files[-1]] = Fd(value=value, next={})
         return True
 
     def get(self, path: str) -> int:

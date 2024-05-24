@@ -4,7 +4,6 @@ from functools import cache
 
 class Solution:
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
-
         def next(i: int, k: int) -> int:
             while i <= len(days) - 1 and days[i] < k:
                 i = i + 1

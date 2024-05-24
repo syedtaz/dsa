@@ -3,6 +3,7 @@ from collections import defaultdict
 
 point = tuple[int, int]
 
+
 class UnionFind:
     parents: dict[point, point]
     ranks: dict[point, int]
@@ -15,7 +16,6 @@ class UnionFind:
         if self.parents[x] != x:
             self.parents[x] = self.find(self.parents[x])
         return self.parents[x]
-
 
     def union(self, x: point, y: point) -> None:
         xbar = self.find(x)
@@ -33,9 +33,8 @@ class UnionFind:
                 self.ranks[ybar] += 1
 
 
-
 def generate_offsets(uf: UnionFind) -> int:
-    components : dict[point, list[point]] = defaultdict(list)
+    components: dict[point, list[point]] = defaultdict(list)
 
     for k, v in uf.parents.items():
         components[v].append(k)
@@ -52,20 +51,20 @@ def generate_offsets(uf: UnionFind) -> int:
 
         for idx, other in enumerate(component[1:]):
             a, b = other
-            component[idx+1] = (x - a, y - b)
+            component[idx + 1] = (x - a, y - b)
 
         component[0] = (0, 0)
         components[k] = component
 
     return len(set([tuple(x) for x in components.values()]))
 
+
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
-
         if len(grid) == 0:
             return 0
 
-        points : set[tuple[int, int]] = set()
+        points: set[tuple[int, int]] = set()
         m, n = len(grid), len(grid[0])
 
         for i in range(m):
@@ -77,11 +76,11 @@ class Solution:
 
         for point in points:
             x, y = point
-            for dx, dy in [(1,0),(-1,0),(0,1),(0,-1)]:
+            for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
                 if 0 <= x + dx <= m - 1 and 0 <= y + dy <= n - 1:
                     neighbor = (x + dx, y + dy)
                     if neighbor in points:
-                      uf.union(point, neighbor)
+                        uf.union(point, neighbor)
 
         for p in uf.parents:
             _ = uf.find(p)

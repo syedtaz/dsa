@@ -3,7 +3,7 @@ class Solution:
         z = x ^ y
         acc = 1 if z else 0
 
-        while (z := z & (z - 1)):
-          acc += 1
+        while z := z & (z - 1):
+            acc += 1
 
         return acc

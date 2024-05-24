@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class TreeNode:
     val: int
     left: Optional["TreeNode"]
@@ -18,7 +19,6 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-
         def f(node: Optional[TreeNode]) -> Optional[TreeNode]:
             if node is None:
                 return None

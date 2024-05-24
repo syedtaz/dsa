@@ -1,8 +1,8 @@
 from nodedef import *
 
+
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-
         def f(node: Optional[TreeNode]) -> tuple[bool, int]:
             if node is None:
                 return True, -1

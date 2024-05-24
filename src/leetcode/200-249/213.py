@@ -1,9 +1,9 @@
 from typing import List
 from functools import cache
 
+
 class Solution:
     def rob(self, nums: List[int]) -> int:
-
         @cache
         def f(i: int, first: bool) -> int:
             if i >= len(nums):

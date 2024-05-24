@@ -15,4 +15,4 @@ class Solution:
             else:
                 return f(n, i - 1) + f(n - coins[i - 1], i)
 
-        return f(n=amount,i=len(coins))
+        return f(n=amount, i=len(coins))

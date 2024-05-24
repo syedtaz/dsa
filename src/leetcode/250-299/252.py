@@ -1,11 +1,12 @@
 from typing import List
 
+
 class Solution:
     def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
         if len(intervals) == 0:
             return True
 
-        intervals.sort(key = lambda x: x[0], reverse=True)
+        intervals.sort(key=lambda x: x[0], reverse=True)
 
         init = intervals.pop()
         end = init[1]

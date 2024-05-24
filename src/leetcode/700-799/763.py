@@ -1,11 +1,12 @@
 from typing import List
 from collections import Counter
 
+
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         counter = Counter(s)
-        current : set[str] = set()
-        acc : list[int] = []
+        current: set[str] = set()
+        acc: list[int] = []
         c = 0
 
         for ch in s:
