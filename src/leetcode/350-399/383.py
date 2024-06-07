@@ -1,15 +1,12 @@
 from collections import Counter
 
-
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        note, mag = Counter(ransomNote), Counter(magazine)
+        cmag = Counter(magazine)
 
-        for k, v in note.items():
-            if k not in mag:
+        for k in ransomNote:
+            if k not in cmag or cmag[k] < 1:
                 return False
-            mag[k] -= v
-            if mag[k] < 0:
-                return False
+            cmag[k] -= 1
 
         return True
