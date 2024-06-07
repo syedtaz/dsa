@@ -3,6 +3,7 @@ ID: ssaad1
 LANG: PYTHON3
 PROG: ride
 """
+
 from string import ascii_uppercase as upper
 
 
@@ -16,6 +17,7 @@ def read():
 
 
 mapping = {c: idx + 1 for idx, c in enumerate(upper)}
+
 
 def score(s):
     total = 1

@@ -4,9 +4,9 @@ from nodedef import TreeNode
 from typing import Optional
 from functools import cache
 
+
 class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
-
         @cache
         def f(node: TreeNode | None) -> int:
             if node is None:

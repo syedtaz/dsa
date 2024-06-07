@@ -1,5 +1,4 @@
-from typing import Optional, Callable
-from collections import Counter
+from typing import Optional
 
 
 class TreeNode:

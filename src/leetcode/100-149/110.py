@@ -1,9 +1,9 @@
 from nodedef import TreeNode
 from typing import Optional
 
+
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-
         def f(node: Optional[TreeNode]) -> tuple[bool, int]:
             if node is None:
                 return True, -1
@@ -14,7 +14,9 @@ class Solution:
             if not left_balanced or not right_balanced:
                 return False, 0
 
-            return abs(left_height - right_height) < 2, 1 + max(left_height, right_height)
+            return abs(left_height - right_height) < 2, 1 + max(
+                left_height, right_height
+            )
 
         result, _ = f(root)
         return result

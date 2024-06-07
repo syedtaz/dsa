@@ -1,7 +1,7 @@
 from functools import lru_cache
 
-def levenshteinDistance(str1, str2):
 
+def levenshteinDistance(str1, str2):
     @lru_cache
     def f(i, j):
         if i == 0:

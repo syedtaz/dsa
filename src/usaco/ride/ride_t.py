@@ -3,6 +3,7 @@ ID: ssaad1
 LANG: PYTHON3
 TASK: test
 """
+
 from string import ascii_uppercase as upper
 # from typing import Callable
 
@@ -33,10 +34,11 @@ def result() -> list[str]:
 
     return [output(x) for x in read()]
 
-def output() -> None:
 
-    with open('ride.out', 'w+') as f:
+def output() -> None:
+    with open("ride.out", "w+") as f:
         for s in result():
-          f.write(s)
+            f.write(s)
+
 
 output()

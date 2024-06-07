@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+
 def numberOfWaysToTraverseGraph(width, height):
     @lru_cache
     def f(i, j):

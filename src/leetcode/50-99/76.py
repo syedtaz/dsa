@@ -2,6 +2,7 @@ from collections import Counter
 
 type pair = tuple[int, int]
 
+
 def fmap(bound: pair | None, cand: pair) -> pair:
     if bound is None:
         return cand
@@ -10,22 +11,20 @@ def fmap(bound: pair | None, cand: pair) -> pair:
     a, b = cand
     return cand if b - a < r - l else bound
 
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-
         state = Counter(t)
-        acc : tuple[int, int] | None = None
+        acc: tuple[int, int] | None = None
         i = 0
         remaining = len(t)
 
         for j, ch in enumerate(s):
-
             # State might be invalidated
             if ch in state:
                 state[ch] -= 1
                 if state[ch] <= 0:
                     remaining -= 1
-
 
             while remaining == 0:
                 acc = fmap(acc, (i, j))
@@ -43,4 +42,3 @@ class Solution:
 
         l, r = acc
         return s[l:r]
-

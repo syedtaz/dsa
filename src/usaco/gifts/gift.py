@@ -4,6 +4,7 @@ LANG: PYTHON3
 PROG: gift1
 """
 
+
 def generate_mapping(l, n):
     acc: list[str] = []
     for _ in range(n):

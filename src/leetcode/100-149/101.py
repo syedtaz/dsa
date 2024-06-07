@@ -29,7 +29,6 @@ class Solution:
         return left_then_right == right_then_left
 
     def isSymmetric2(self, root: Optional[TreeNode]) -> bool:
-
         def f(a: TreeNode | None, b: TreeNode | None) -> bool:
             match (a, b):
                 case (None, None):

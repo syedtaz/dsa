@@ -1,6 +1,7 @@
 from functools import lru_cache
 from math import inf
 
+
 def minNumberOfCoinsForChange(n, denoms):
     @lru_cache
     def recurrence(i):

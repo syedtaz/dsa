@@ -1,9 +1,9 @@
 from functools import cache
 from math import ceil
 
+
 class Solution:
     def soupServings(self, n: int) -> float:
-
         @cache
         def f(a: int, b: int) -> float:
             if a <= 0 and b <= 0:
