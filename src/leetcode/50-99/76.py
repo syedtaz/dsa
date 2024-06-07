@@ -20,10 +20,12 @@ class Solution:
 
         for j, ch in enumerate(s):
 
+            # State might be invalidated
             if ch in state:
                 state[ch] -= 1
                 if state[ch] <= 0:
                     remaining -= 1
+
 
             while remaining == 0:
                 acc = fmap(acc, (i, j))
