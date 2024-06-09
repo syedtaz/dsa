@@ -1,28 +1,22 @@
-from collections import defaultdict
-from bisect import insort_left
+from heapq import heappush, heappop, heappushpop
+
 
 class MedianFinder:
-    hashtbl : dict[int, int]
-    keys: list[int]
-    length: int
-    median: int
-    acc: int
+    top: list[int] # Min heap
+    bottom: list[int] # Max heap
 
     def __init__(self) -> None:
-        self.hashtbl = defaultdict(int)
-        self.keys = []
-        self.length = 0
-        self.median = -1
+        self.top, self.bottom = [], []
 
 
     def addNum(self, num: int) -> None:
-        if num not in self.hashtbl:
-          self.hashtbl[num] += 1
-          insort_left(self.keys, num)
-        else:
-          self.hashtbl[num] += 1
+        heappush(self.top, -1 * heappushpop(self.bottom, -1 * num))
 
-        self.length += 1
+        if len(self.bottom) < len(self.top):
+            heappush(self.bottom, -1 * heappop(self.top))
 
     def findMedian(self) -> float:
+        if len(self.bottom) > len(self.top):
+            return self.bottom[0] * -1
 
+        return  ((self.bottom[0] * -1) + (self.top[0])) / 2

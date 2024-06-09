@@ -1,58 +1,20 @@
-# Definition for a binary tree node.
+from nodedef import TreeNode
 from typing import Optional
-
-
-class TreeNode:
-    val: int
-    left: "Optional[TreeNode]"
-    right: "Optional[TreeNode]"
-
-    def __init__(
-        self,
-        val: int = 0,
-        left: "Optional[TreeNode]" = None,
-        right: "Optional[TreeNode]" = None,
-    ) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        if root is None:
-            return True
+        acc: list[int] = []
+        stack: list[TreeNode] = []
+        curr: TreeNode | None = root
 
-        node = root
-        cur = node
-        prev = None
+        while curr is not None or len(stack) > 0:
+            while curr is not None:
+                stack.append(curr)
+                curr = curr.left
 
-        while cur is not None:
-            if cur.left is None:
-                if prev is None:
-                    prev = cur.val
-                else:
-                    if prev > cur.val:
-                        return False
-                    else:
-                        prev = cur.val
-                cur = cur.right
-            else:
-                x = cur.left
-                while x.right is not None and x.right != cur:
-                    x = x.right
-                if x.right == cur:
-                    x.right = None
-                    if prev is None:
-                        prev = cur.val
-                    else:
-                        if prev > cur.val:
-                            return False
-                        else:
-                            prev = cur.val
-                    cur = cur.right
-                else:
-                    x.right = cur
-                    cur = cur.left
+            curr = stack.pop()
+            acc.append(curr.val)
+            curr = curr.right
 
-        return True
+        return all([a < b for a, b in zip(acc, acc[1:])])

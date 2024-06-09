@@ -8,7 +8,7 @@ class Solution:
         def priority(x: int, y: int) -> float:
             return -sqrt(x**2 + y**2)
 
-        pqueue = []
+        pqueue: list[tuple[float, int, int]] = []
         heapq.heapify(pqueue)
 
         for point in points:
@@ -20,4 +20,4 @@ class Solution:
             else:
                 heapq.heappush(pqueue, (p, x, y))
 
-        return [[x, y] for _, x, y in pqueue]  # type: ignore
+        return [[x, y] for _, x, y in pqueue]
