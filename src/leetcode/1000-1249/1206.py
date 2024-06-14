@@ -1,97 +1,124 @@
-from typing import Optional
-import random
+from random import randint
+from sys import maxsize
+from math import inf
+from dataclasses import dataclass
 
 
+def ffs(x: int) -> int:
+    return (x & -x).bit_length() - 1
+
+
+def generate_level(max_level: int) -> int:
+    return ffs(randint(0, maxsize) & ((1 << max_level) - 1))
+
+
+@dataclass
 class Node:
-    value: int
-    forward: list[Optional["Node"]]
+    value: float
+    next: "Node | None"
+    down: "Node | None"
 
-    def __init__(self, value: int, level: int) -> None:
-        self.value = value
-        self.forward = [None] * (level + 1)
+    def __repr__(self) -> str:
+        arrow = "" if self.next is None else " -> "
+        down = "X" if self.down is None else "O"
+        return f"[{self.value}, {down}]{arrow}"
 
 
 class Skiplist:
-    head: Node
-    level: int
-    size: int
+    levels: list[Node]
+    max_level: int
+    max_so_far : int | None
 
-    def __init__(self) -> None:
-        self.head = Node(0, 0)
-        self.level = -1
-        self.size = 0
+    def __repr__(self) -> str:
+        glob: list[str] = []
 
-    def search(self, target: int) -> bool:
-        current = self.head
+        for i in range(self.max_level):
+            curr = self.levels[i]
+            acc: list[str] = []
 
-        for i in range(self.level):
-            while True:
-                if current.forward[i] is None or current.forward[i].value > target:
-                    break
+            while curr is not None:
+                acc.append(str(curr))
+                curr = curr.next
 
-                assert current.forward[i] is not None
-                if current.forward[i].value == target:
-                    return True
+            glob.append("".join(acc))
 
-                current = current.forward[i]
+        return "\n".join(glob)
 
-        return False
+    def __find_first(self) -> int | None:
+        level = self.max_so_far if self.max_so_far else 0
 
-    def random_level(self) -> int:
-        level = 0
-
-        while random.getrandbits(32) % 2 == 0:
+        while level < self.max_level:
+            node = self.levels[level]
+            if node.next is not None and node.next.next is not None:
+                return level
             level += 1
 
-        return level
+        return None
 
-    def adjust_level(self, level: int) -> None:
-        temp = self.head.forward
+    def __init__(self) -> None:
+        self.max_level = 5
+        self.levels = [
+            Node(-inf, Node(inf, None, None), None) for _ in range(self.max_level + 1)
+        ]
+        self.max_so_far = 0
 
-        self.head = Node(0, level)
-        self.level = level
+    def search(self, target: int) -> bool:
+        if (level := self.__find_first()) is None:
+            return False
 
-        for i in range(len(temp)):
-            self.head.forward[i] = temp[i]
+        curr = self.levels[level]
 
-    def add(self, num: int) -> None:
-        nlevel = self.random_level()
+        while curr:
+            while curr.next is not None and target >= curr.next.value:
+                curr = curr.next
 
-        if nlevel > self.level:
-            self.adjust_level(nlevel)
+            if curr.down is None:
+                return curr.value == target
 
-        node = Node(num, nlevel)
-        stack = [None] * (nlevel + 1)
-        cur = self.head
-
-        for i in range(self.level, -1, -1):
-            while cur.forward[i] is not None and cur.forward[i].value < num:
-                cur = cur.forward[i]
-            stack[i] = cur
-
-        for i in range(nlevel):
-            node.forward[i] = stack[i].forward[i]
-            stack[i].forward[i] = node
-
-        self.size += 1
-
-    def erase(self, num: int) -> bool:
-        cur = self.head
-
-        for i in range(self.level, -1, -1):
-            while True:
-                if cur.forward[i] is None or cur.forward[i].value > num:
-                    break
-
-                if cur.forward[i].value == num:
-                    cur.forward[i] = cur.forward[i].forward[i]
-                    return True
-
-                cur = cur.forward[i]
+            curr = curr.down
 
         return False
 
+    def _add_at_level(self, head: Node, target: int) -> Node:
+        curr = head
 
-s = Skiplist()
-s.add(1)
-print(s.search(1))
+        while curr.next is not None and target > curr.next.value:
+            curr = curr.next
+
+        temp = curr.next
+        curr.next = Node(target, temp, None)
+        return curr.next
+
+    def _remove_at_level(self, head: Node, target: int) -> None:
+        curr = head
+
+        while curr.next is not None and curr.next.value != target:
+            curr = curr.next
+
+        if curr.next is not None and curr.next.value == target:
+            temp = curr.next.next
+            curr.next = temp
+
+    def add(self, num: int) -> None:
+        prev = self._add_at_level(self.levels[self.max_level], num)
+        level = generate_level(self.max_level)
+
+        if self.max_so_far is None:
+            self.max_so_far = level
+        else:
+            level = min(self.max_so_far, level)
+
+
+        for i in range(self.max_level - 1, level - 1, -1):
+            node = self._add_at_level(self.levels[i], num)
+            node.down = prev
+            prev = node
+
+    def erase(self, num: int) -> bool:
+        if not self.search(num):
+            return False
+
+        for head in self.levels:
+            self._remove_at_level(head, num)
+
+        return True
