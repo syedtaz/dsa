@@ -1,29 +1,31 @@
 from typing import List
 
+
 class Solution:
     def compress(self, chars: List[str]) -> int:
+        i = 0
+        k = 0
 
-        if len(chars) <= 2:
-            return len(chars)
+        while i < len(chars):
 
-        i, j, count = 0, 1, 1
+            ch = chars[i]
+            count = 1
+            j = i + 1
 
-        while True:
-            if j >= len(chars) and count > 1:
-                i = i + 1
-                chars[i] = str(count)
-                break
+            while j < len(chars) and chars[j] == ch:
+                count += 1
+                j += 1
 
-            if j >= len(chars):
-                break
+            if count == 1:
+                chars[k] = ch
+            else:
+                chars[k] = ch
 
-            if chars[i] != chars[j]:
-                chars[i + 1] = str(count)
-                i, j, count = i + 2, j + 1, 1
-                continue
+                for s in str(count):
+                    k += 1
+                    chars[k] = s
 
-            j, count = j + 1, count + 1
-            if count > 9:
-                chars[i + 1] =
+            k += 1
+            i = j
 
-        return i + 1
+        return k

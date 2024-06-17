@@ -1,33 +1,24 @@
-import asyncio
 from typing import Callable
-
+from threading import Lock
 
 class Foo:
-    ref_fst: asyncio.Event
-    ref_sec: asyncio.Event
-    ref_thd: asyncio.Event
-
     def __init__(self) -> None:
-        self.ref_fst = asyncio.Event()
-        self.ref_snd = asyncio.Event()
-        self.ref_thd = asyncio.Event()
+        self.firstJobDone = Lock()
+        self.secondJobDone = Lock()
+        self.firstJobDone.acquire()
+        self.secondJobDone.acquire()
 
-    async def first(self, printFirst: "Callable[[], None]") -> None:
-        # printFirst() outputs "first". Do not change or remove this line.
+    def first(self, printFirst: 'Callable[[], None]') -> None:
         printFirst()
-        asyncio.run(self.ref_thd.wait())
-        self.ref_fst.set()
+        self.firstJobDone.release()
 
-    async def second(self, printSecond: "Callable[[], None]") -> None:
-        await self.ref_fst.wait()
+    def second(self, printSecond: 'Callable[[], None]') -> None:
 
-        # printSecond() outputs "second". Do not change or remove this line.
-        printSecond()
+        with self.firstJobDone:
+            printSecond()
+            self.secondJobDone.release()
 
-        self.ref_sec.set()
+    def third(self, printThird: 'Callable[[], None]') -> None:
 
-    async def third(self, printThird: "Callable[[], None]") -> None:
-        await self.ref_sec.wait()
-        # printThird() outputs "third". Do not change or remove this line.
-        printThird()
-        self.ref_thd.set()
+        with self.secondJobDone:
+            printThird()
