@@ -17,3 +17,22 @@ class Solution:
             return f(i, j + 1, acc)
 
         return f(0, 1, 1)
+
+class Solution2:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums) <= 1:
+            return len(nums)
+
+        i, j = 0, 0
+
+        while j <= len(nums) - 1:
+            ch = nums[j]
+            j += 1
+
+            while j < len(nums) and nums[j] == ch:
+                j += 1
+
+            nums[i] = ch
+            i += 1
+
+        return i

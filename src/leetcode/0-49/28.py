@@ -12,3 +12,16 @@ class Solution:
             i, j = i + 1, j + 1
 
         return -1
+
+class Solution2:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if len(needle) > len(haystack):
+            return -1
+
+        target = hash(needle)
+
+        for i in range(len(haystack) - len(needle) + 1):
+            if hash(haystack[i:i + len(needle)]) == target:
+                return i
+
+        return -1

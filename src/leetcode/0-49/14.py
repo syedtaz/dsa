@@ -1,5 +1,6 @@
 from typing import List
-
+from dataclasses import dataclass
+from collections import deque
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
@@ -29,7 +30,3 @@ class Solution:
         shortest = search(1, strs[0])
 
         return f(0, len(shortest) - 1, "", shortest)
-
-
-# s = Solution()
-# s.longestCommonPrefix(["cir","car"])
