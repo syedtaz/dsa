@@ -1,10 +1,13 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        table = [0] * n
-        table[0] = 1
-        for i in range(1, n):
-            one = table[i - 1] if i >= 1 else 0
-            two = table[i - 2] if i >= 2 else 0
-            table[i] = one + two
+        match n:
+            case 1 | 2:
+                return n
+            case _:
+                a, b = 1, 2
 
-        return table[n - 1]
+                for _ in range(2, n):
+                    c = a + b
+                    a, b = b, c
+
+                return b

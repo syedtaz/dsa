@@ -5,3 +5,4 @@ mod longest_common_prefix;
 mod remove_duplicates_sorted;
 mod remove_duplicates;
 mod index_first_occurrence;
+mod length_of_last_word;
