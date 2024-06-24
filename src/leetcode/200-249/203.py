@@ -1,31 +1,18 @@
-from nodedef import *
+from nodedef import ListNode
+from typing import Optional
 
 
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
-        def remove(start: Optional[ListNode]) -> Optional[ListNode]:
-            node, acc = start, None
-            while True:
-                if node is None:
-                    return acc
 
-                if node.val == val:
-                    node = node.next
-                    continue
+        sentinel = ListNode(0, head)
+        curr = sentinel
 
-                temp = node.next
-                node.next = acc
-                node, acc = temp, node
+        while curr.next is not None:
+            if curr.next.val == val:
+                curr.next = curr.next.next
                 continue
 
-        def reverse(start: Optional[ListNode]) -> Optional[ListNode]:
-            node, acc = start, None
-            while True:
-                if node is None:
-                    return acc
+            curr = curr.next
 
-                temp = node.next
-                node.next = acc
-                node, acc = temp, node
-
-        return reverse(remove(head))
+        return sentinel.next

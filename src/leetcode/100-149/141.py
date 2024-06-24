@@ -1,10 +1,5 @@
 from typing import Optional
-
-
-class ListNode:
-    def __init__(self, x: int) -> None:
-        self.val = x
-        self.next = None
+from nodedef import ListNode
 
 
 class Solution:
@@ -22,3 +17,19 @@ class Solution:
             return f(turtle.next, hare.next.next)
 
         return f(head, head.next)
+
+class Solution2:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+
+        if head is None:
+            return False
+
+        turtle, hare = head, head.next
+
+        while turtle != hare:
+            if hare is None or hare.next is None:
+                return False
+
+            turtle, hare = turtle.next, hare.next.next # type: ignore
+
+        return True
