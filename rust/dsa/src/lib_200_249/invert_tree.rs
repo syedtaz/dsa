@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
@@ -29,12 +31,12 @@ impl Solution {
         let mut stack: Vec<Tree> = vec![root.clone()];
 
         while let Some(outer) = stack.pop() {
-          if let Some(inner) = outer {
-            let TreeNode { left, right, .. } = &mut *inner.borrow_mut();
-            mem::swap(right, left);
-            stack.push(right.clone());
-            stack.push(left.clone());
-          }
+            if let Some(inner) = outer {
+                let TreeNode { left, right, .. } = &mut *inner.borrow_mut();
+                mem::swap(right, left);
+                stack.push(right.clone());
+                stack.push(left.clone());
+            }
         }
 
         root

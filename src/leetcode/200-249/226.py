@@ -1,20 +1,5 @@
 from typing import Optional
-
-
-class TreeNode:
-    val: int
-    left: Optional["TreeNode"]
-    right: Optional["TreeNode"]
-
-    def __init__(
-        self,
-        val: int = 0,
-        left: Optional["TreeNode"] = None,
-        right: Optional["TreeNode"] = None,
-    ) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+from nodedef import TreeNode
 
 
 class Solution:
@@ -27,3 +12,19 @@ class Solution:
             return node
 
         return f(root)
+
+    def invertTreeIterative(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        stack : list[TreeNode | None] = [root]
+
+        while len(stack) > 0:
+            node = stack.pop()
+
+            if node is None:
+                continue
+
+            node.left, node.right = node.right, node.left
+            stack.append(node.right)
+            stack.append(node.left)
+
+
+        return root
