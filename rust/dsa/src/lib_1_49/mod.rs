@@ -6,3 +6,5 @@ mod remove_duplicates_sorted;
 mod remove_duplicates;
 mod index_first_occurrence;
 mod length_of_last_word;
+mod longest_substring_wo_repeating;
+mod container_most_water;
