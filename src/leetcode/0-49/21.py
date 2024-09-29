@@ -1,40 +1,36 @@
-from nodedef import *
-
-node = Optional[ListNode]
+from nodedef import ListNode
+from typing import Optional
 
 
 class Solution:
     def mergeTwoLists(
         self, list1: Optional[ListNode], list2: Optional[ListNode]
     ) -> Optional[ListNode]:
-        def merge(left: node, right: node, acc: node) -> tuple[node, node]:
-            if left is None and right is None:
-                return acc, None
+        sentinel = ListNode(0, None)
+        head = sentinel
 
-            if left is None:
-                return acc, right
+        while list1 or list2:
+            if list1 is None:
+                head.next = list2
+                break
 
-            if right is None:
-                return acc, left
+            if list2 is None:
+                head.next = list1
+                break
 
-            if left.val <= right.val:
-                temp = left.next
-                left.next = acc
-                return merge(temp, right, left)
+            assert list1 is not None and list2 is not None
+
+            if list1.val <= list2.val:
+                temp = list1.next
+                list1.next = None
+                head.next = list1
+                head = head.next
+                list1 = temp
             else:
-                temp = right.next
-                right.next = acc
-                return merge(left, temp, right)
+                temp = list2.next
+                list2.next = None
+                head.next = list2
+                head = head.next
+                list2 = temp
 
-        def reverse(n: node, acc: node) -> node:
-            if n is None:
-                return acc
-            temp = n.next
-            n.next = reverse(temp, acc)
-            return n
-
-        a, leftover = merge(list1, list2, None)
-        a = reverse(a, None)
-
-        if leftover is None:
-            return a
+        return sentinel.next
