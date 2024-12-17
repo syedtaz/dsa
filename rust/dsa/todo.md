@@ -1,7 +1,7 @@
 # Current
 
-- Linked lists [3/10]
-  + 5 easies
+- Linked lists [6/11]
+  [x] >= 5 easies
   + 5 mediums
 
 # Todo
