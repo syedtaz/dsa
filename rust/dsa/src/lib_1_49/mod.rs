@@ -13,3 +13,4 @@ mod remove_duplicates;
 mod remove_duplicates_sorted;
 mod two_sum;
 mod valid_parentheses;
+mod merge_sorted;

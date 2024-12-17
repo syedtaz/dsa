@@ -17,17 +17,29 @@ impl ListNode {
 
 impl Solution {
     pub fn remove_elements(mut head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
-      let mut lst = None;
-      let mut tail = &mut lst;
+        let mut sentinel = None;
+        let mut curr = &mut sentinel;
 
-      while let Some(mut x) = head.take() {
-        head = x.next.take();
-
-        if x.val != val {
-          tail = &mut tail.insert(x).next;
+        while let Some(mut x) = head.take() {
+            head = x.next.take();
+            if x.val != val {
+                curr = &mut curr.insert(x).next;
+            }
         }
-      }
 
-      lst
+        sentinel
     }
 }
+
+// let mut lst = None;
+// let mut tail = &mut lst;
+
+// while let Some(mut x) = head.take() {
+//   head = x.next.take();
+
+//   if x.val != val {
+//     tail = &mut tail.insert(x).next;
+//   }
+// }
+
+// lst
