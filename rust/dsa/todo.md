@@ -1,13 +1,6 @@
 # Current
 
-[ ] Stacks [3/20]
-  [ ] 3/5 easies
-  [ ] 15 mediums
-  [ ] 5 hards
 
-[ ] Strings [5/15]
-  [ ] 5/5 easies
-  [ ] 0/10 mediums
 
 # Todo
 
@@ -17,7 +10,6 @@
 TryFrom, ToOwned
 - Closure differences: FnOnce, FnMut, difference between functions, how are they
 implemented?
-- Custom hashing
 - String vs str
 - Unsafe
 - FFI
@@ -25,18 +17,34 @@ implemented?
 
 ## LC
 
-- Two Pointers [1/25]
+[ ] Two Pointers [1/25]
   [ ] 8 easies
   [ ] 1/15 mediums
   [ ] 2 hards
 
-- Linked lists [6/11]
+[ ] Linked lists [6/11]
   [x] 6/5 easies
-  + 5 mediums
+  [ ] 5 mediums
 
+[ ] Stacks [3/20]
+  [ ] 3/5 easies
+  [ ] 15 mediums
+  [ ] 5 hards
+
+[ ] Strings [11/15]
+  [x] 5/5 easies
+  [ ] 6/10 mediums
+
+[ ] Sorting [0/10]
+  [ ] 0/3 easies
+  [ ] 0/7 mediums
+  [ ] implement merge sort
+  [ ] implement quick sort
+  [ ] custom comparators
+  [ ] Ord, PartialOrd
 
 - HashMaps [0/25]
-- Sorting [0/25]
+
 - DFS [0/25]
 - BFS [0/25]
 - UnionFind [0/10]
@@ -56,3 +64,4 @@ implemented?
 [x] RefCell
 [x] Rc
 [x] Rc, Arc, Copy Types, References
+[x] Custom hashing

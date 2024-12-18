@@ -1,1 +1,0 @@
-mod adjacent_duplicates;
