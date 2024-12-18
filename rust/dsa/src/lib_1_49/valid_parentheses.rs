@@ -1,18 +1,16 @@
-#![allow(dead_code)]
-
 struct Solution;
 
 impl Solution {
     pub fn is_valid(s: String) -> bool {
-        let mut stack: Vec<char> = Vec::with_capacity(s.len() / 2);
+        let mut stack = Vec::with_capacity(s.len());
 
-        for ch in s.chars().into_iter() {
-            match ch {
+        for c in s.chars() {
+            match c {
                 '(' => stack.push(')'),
                 '{' => stack.push('}'),
                 '[' => stack.push(']'),
                 _ => {
-                    if Some(ch) != stack.pop() {
+                    if Some(c) != stack.pop() {
                         return false;
                     }
                 }

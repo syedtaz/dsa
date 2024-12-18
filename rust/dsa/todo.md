@@ -1,8 +1,13 @@
 # Current
 
-- Linked lists [6/11]
-  [x] >= 5 easies
-  + 5 mediums
+[ ] Stacks [3/20]
+  [ ] 3/5 easies
+  [ ] 15 mediums
+  [ ] 5 hards
+
+[ ] Strings [5/15]
+  [ ] 5/5 easies
+  [ ] 0/10 mediums
 
 # Todo
 
@@ -20,8 +25,16 @@ implemented?
 
 ## LC
 
+- Two Pointers [1/25]
+  [ ] 8 easies
+  [ ] 1/15 mediums
+  [ ] 2 hards
 
-- Two Pointers [0/25]
+- Linked lists [6/11]
+  [x] 6/5 easies
+  + 5 mediums
+
+
 - HashMaps [0/25]
 - Sorting [0/25]
 - DFS [0/25]

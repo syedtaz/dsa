@@ -1,20 +1,18 @@
-#![allow(dead_code)]
-
 use std::collections::HashMap;
 
 struct Solution;
 
-pub fn generate_counter(s: &str) -> HashMap<char, usize> {
-    let counter: HashMap<char, usize> = HashMap::with_capacity(s.len());
-
-    s.chars().into_iter().fold(counter, |mut acc, e| {
-        *acc.entry(e).or_insert(0) += 1;
-        acc
-    })
-}
-
 impl Solution {
+    fn generate_counter(s: String) -> HashMap<char, u32> {
+        s.chars()
+            .into_iter()
+            .fold(HashMap::with_capacity(s.len()), |mut acc, c| {
+                *acc.entry(c).or_insert(0) += 1;
+                acc
+            })
+    }
+
     pub fn is_anagram(s: String, t: String) -> bool {
-        generate_counter(&s).eq(&generate_counter(&t))
+        Solution::generate_counter(s).eq(&Solution::generate_counter(t))
     }
 }

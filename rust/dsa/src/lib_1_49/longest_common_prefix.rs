@@ -1,94 +1,36 @@
-#![allow(dead_code)]
-
-struct Solution;
-
-use std::collections::HashMap;
-
-#[derive(Debug)]
-struct Node {
-    value: char,
-    word: bool,
-    children: HashMap<char, Node>,
-}
-
-impl Node {
-    pub fn new(ch: char) -> Self {
-        Node {
-            value: ch,
-            word: false,
-            children: HashMap::new(),
-        }
-    }
-}
-
-#[derive(Debug)]
-struct Trie {
-    root: Node,
-}
-
-impl Trie {
-    pub fn new() -> Self {
-        Trie {
-            root: Node::new('\0'),
-        }
-    }
-
-    pub fn insert(&mut self, word: &str) -> () {
-        let mut curr = &mut self.root;
-
-        for ch in word.chars().into_iter() {
-            if !curr.children.contains_key(&ch) {
-                let _ = curr.children.insert(ch, Node::new(ch));
-            }
-            curr = curr.children.get_mut(&ch).unwrap();
-        }
-
-        curr.word = true;
-    }
-
-    pub fn prefix(&self, word: &String) -> i32 {
-        let mut curr = &self.root;
-        let mut acc: i32 = 0;
-
-        for ch in word.chars().into_iter() {
-            if curr.children.len() != 1 {
-                return acc;
-            }
-            curr = curr.children.get(&ch).unwrap();
-            acc += 1
-        }
-
-        acc
-    }
-}
+pub struct Solution {}
 
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
-        let mut trie = Trie::new();
-        for word in strs.iter() {
-            if word == "" {
-                return "".to_string();
-            }
-            trie.insert(word)
+        if strs.is_empty() {
+            return String::from("");
         }
 
-        let shortest = strs
-            .iter()
-            .reduce(|acc, e| if acc.len() <= e.len() { acc } else { e })
-            .unwrap()
-            .len();
-
-        let choices: Vec<&String> = strs.iter().filter(|x| x.len() == shortest).collect();
-
-        let (_, res) = choices.iter().fold((0, ""), |(length, prev), e| {
-            let l = trie.prefix(e);
-            if l > length {
-                (l, e)
+        let shortest = strs.iter().fold(strs.first().unwrap(), |acc, x| {
+            if x.len() < acc.len() {
+                x
             } else {
-                (length, prev)
+                acc
             }
         });
 
-        res.to_string()
+        let mut prefix = Vec::with_capacity(shortest.len());
+
+        for (i, c) in shortest.chars().enumerate() {
+            let mut matched = true;
+            for s in strs.iter() {
+                if s.as_bytes()[i] != c as u8 {
+                    matched = false;
+                }
+            }
+
+            if !matched {
+                break;
+            }
+
+            prefix.push(c);
+        }
+
+        prefix.into_iter().collect()
     }
 }
