@@ -43,10 +43,18 @@ implemented?
   [ ] custom comparators
   [ ] Ord, PartialOrd
 
+[ ] Depth First Search [0/15]
+  [ ] Skim Jeff book
+  [ ] 0/5 easies
+  [ ] 0/10 mediums
+
+[ ] Breadth First Search [0/15]
+  [ ] Skim Jeff book
+  [ ] 0/5 easies
+  [ ] 0/10 mediums
+
 - HashMaps [0/25]
 
-- DFS [0/25]
-- BFS [0/25]
 - UnionFind [0/10]
 - 1D DP [0/10]
 - 2D DP [0/10]

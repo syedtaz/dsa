@@ -4,3 +4,7 @@ mod number_of_1_bits;
 mod lru_cache;
 mod postorder_traversal;
 mod largest_number;
+mod maximum_depth;
+mod symmetric_tree;
+mod same_tree;
+mod height_balanced;
