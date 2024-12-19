@@ -43,9 +43,9 @@ implemented?
   [ ] custom comparators
   [ ] Ord, PartialOrd
 
-[ ] Depth First Search [0/15]
+[ ] Depth First Search [5/15]
   [ ] Skim Jeff book
-  [ ] 0/5 easies
+  [x] 5/5 easies
   [ ] 0/10 mediums
 
 [ ] Breadth First Search [0/15]

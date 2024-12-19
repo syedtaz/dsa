@@ -8,3 +8,4 @@ mod maximum_depth;
 mod symmetric_tree;
 mod same_tree;
 mod height_balanced;
+mod path_sum;

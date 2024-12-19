@@ -3,3 +3,4 @@ mod first_unique;
 mod string_compression;
 mod minimum_time_difference;
 mod diameter;
+mod island_perimeter;
