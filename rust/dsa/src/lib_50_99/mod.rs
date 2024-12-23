@@ -6,3 +6,4 @@ mod unique_paths;
 mod word_search;
 mod pow;
 mod simplify_path;
+mod merge_intervals;
