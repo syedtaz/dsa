@@ -5,3 +5,4 @@ mod minimum_time_difference;
 mod diameter;
 mod island_perimeter;
 mod in_memory_fs;
+mod sort_char_by_freq;
