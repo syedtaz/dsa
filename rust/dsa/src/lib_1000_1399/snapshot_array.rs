@@ -12,7 +12,7 @@ impl SnapshotArray {
     }
 
     fn set(&mut self, index: i32, val: i32) {
-
+      self
     }
 
     // fn snap(&self) -> i32 {}

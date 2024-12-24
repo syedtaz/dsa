@@ -8,3 +8,4 @@ mod valid_anagram;
 mod design_twitter;
 mod reverse_linked_list;
 mod palindrome_linked_list;
+mod majority_element_ii;
