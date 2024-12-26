@@ -1,0 +1,32 @@
+* Process
+** Process credentials
+  pid unique nonnegative integer when process is created with /fork/.
+  get process' own pid with getpid(2). get parent pid using getppid(2).
+
+*** Terminal control
+
+   a process group is a collection of processes that share the same process 
+   group id. shell creates new process groups for processes in a pipeline
+   or those that are used for a single command (?)
+
+   a session is a collection of process that share the same session id. *all
+   members of a process group also have the same session id*. 
+
+    creator of the session is the session leader. when a session leader opens
+   the terminal it establishes the controlling terminal of the session.[1] a
+   terminal can control at most one session.
+
+    only one foreground job. only fg job can read from terminal. when terminal
+   keys generate a signal they are only send to the fg job.
+
+*** User/Group Control
+
+    process has multiple user and group ids.
+    -- real ids represent the user and group that owns the process.
+    -- effective ids are used by the kernel to dertermine the permissions
+       that the process has when accessing shared resources.
+    -- saved set ids to switch between ids its real id and saved id. (?)
+    -- supplementary group ids to access files (for linux)
+
+   [1]: O_NOCTTY
+
