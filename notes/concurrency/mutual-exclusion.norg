@@ -1,0 +1,3 @@
+* Mutual Exclusion
+
+Critical sections of different threads do not overlap.
