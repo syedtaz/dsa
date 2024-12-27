@@ -1,28 +1,47 @@
-* Process State
-
-  Every process has a unique integer => PID. Send signal to processes using
-  PIDs. 
-
-  Threads require an address space and other resources but can share them among
-  other threads.
+* Process Structure
 
   -- ( ) Look into variable weight processes.
+  -- ( ) Fill in thread states after reading up on concurrency.
 
-  [ⓘ] Processes cannot share anything without IPC which usually
-  involves copying the state from process to process or using an intermediary
-  file and mmapping it?
+___
+
+Every process has a unique integer => PID. Send signal to processes using
+PIDs. 
+
+Threads require an address space and other resources but can share them among
+other threads.
+
+[ⓘ] Processes cannot share anything without IPC which usually
+involves copying the state from process to process or using an intermediary
+file and mmapping it?
+
+** Process State
+
+   -- NEW: undergoing process creation
+   -- ZOMBIE: undergoing process termination
+   -- NORMAL: RUNNABLE if it is running or can be run, SLEEPING if it is waiting
+      on some IO or STOPPED if it has been stopped by a signal or its parent
+      process.
+
+** Process Lists
+
+   Process entries are stored in `zomproc` if it is in a zombie state and
+   `allproc` otherwise. This segregation exists to improve the efficiency of
+   syscalls like `wait` and the scheduler which must scan over all running
+   processes.
 
 ** Process Entry
 
-   -- Process group
+   Any running process is associated with a process entry. The process entry
+   contains data structures that describe...
 
-
-
-   -- Credential
-   -- VM space
-   -- File descriptors
-   -- Resource limits
-   -- Syscall vector
-   -- Signal actions
-   -- Statistics
-
+   -- Process session and group identifiers
+   -- Real, effective and saved user and group identifiers
+   -- Virtual memory address space
+   -- File descriptors that are opened by the process and its cwd
+   -- syscall vector ==> to run binaries compiled for other unixes by providing
+      a different syscall vector
+   -- Utilization of resources provided by the system
+   -- Statistics, timers and profiling information
+   -- Actions to take when a signal is posted to a process
+   -- Thread management
