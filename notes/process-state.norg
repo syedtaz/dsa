@@ -1,0 +1,28 @@
+* Process State
+
+  Every process has a unique integer => PID. Send signal to processes using
+  PIDs. 
+
+  Threads require an address space and other resources but can share them among
+  other threads.
+
+  -- ( ) Look into variable weight processes.
+
+  [ⓘ] Processes cannot share anything without IPC which usually
+  involves copying the state from process to process or using an intermediary
+  file and mmapping it?
+
+** Process Entry
+
+   -- Process group
+
+
+
+   -- Credential
+   -- VM space
+   -- File descriptors
+   -- Resource limits
+   -- Syscall vector
+   -- Signal actions
+   -- Statistics
+

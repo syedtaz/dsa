@@ -1,0 +1,33 @@
+* Process Security
+
+  Process isolation is implemented using virtual addressing and rings.
+  The kernel has access to user process memory, but the user cannot access
+  memory in the kernel or across processes. 
+
+  Processes can bridge isolation barriers using the filesystem, interprocess 
+  communication mechanisms and the network. 
+
+  Process security is maintained using UIDs, GIDs and effective UIDs and GIDs. 
+  UIDs and GIDs are 32-bit numbers that represent users and groups. They are
+  assumed to correspond to real-world entities and are controlled by the 
+  system administrator. 
+
+  Processes sometimes require additional privileges. Rather than making the
+  target resource accessible by the user or all users, the kernel allows
+  certain programs to assume additional privileges when they are run using
+  `setuid` and `setguid`. The rights of the user is augmented with some 
+  predefined permissions when executing the program -- this new permission set
+  is called the "effective UID/GID".
+
+** User Credentials
+
+   User credentials are stored in the kernel memory to protect them from being
+   modified by userspace. Each process has a pointer to the user credentials
+   and each thread also has a copy which acts as a read-only cache to avoid
+   locking the process.
+
+   Thread credentials are synchronized with a process credential whenever a system
+   call or trap enters the kernel.
+
+   User credentials are reference counter, COW data structures since they are
+   rarely modified but almost always shared across many processes.

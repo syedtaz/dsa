@@ -25,13 +25,29 @@
     -- Stack registers for keeping track of the call stack
     -- Memory segments (text, data, shared library, stack segment)
 
+** Termination
+
+    Terminate voluntarily using `exit` or involuntarily using a signal.
+    Returns the status code to the parent if it exists.
+
+    Why would a parent process not exist?
+   I fork a child and then call exit before child can return. The child's
+   parent is assigned to `init` -- usually PID 1.
+
+*** exit(1)
+
+    exit first kills any other (?) thread associated with the process. any
+    thread already in the kernel and attemping to sleep (?) 
+    
+    - ( ) Look into concurrency in order to understand how thread termination
+          is done.
+    
+
 ** Modes
 
    thread runs in *user mode* or *kernel mode*. in user mode, therad execs
    application code without kernel privileges. if it needs something that
    requires elevated access, it makes a system call and runs in kernel mode.
-
-    ---
 
 **** why?
 
@@ -39,8 +55,6 @@
    might need to read a file but might not have access to a file. therefore,
    we wrap this operation in a syscall and force the kernel to decide whether
    the user has the necessary credentials for reading the file.
-
-    ---
 
 ** Process credentials
   pid unique nonnegative integer when process is created with /fork/.
